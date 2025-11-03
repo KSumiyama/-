@@ -1,3 +1,5 @@
-streamlit
-pulp
-openpyxl
+streamlit==1.39.0
+pulp==2.7.0
+openpyxl==3.1.5
+ 
+ 
