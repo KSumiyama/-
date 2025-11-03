@@ -15,331 +15,263 @@ from openpyxl import load_workbook
 import os
 import openpyxl
 import time
+import streamlit as st
+from io import BytesIO
 
-#実行回数カウント-------------------------------------------------
-#選手データ＆チーム分け結果２のシートにチーム分け結果を入力する際に使用する
-# VAR_NAME = "_execution_counter"
+st.title("紅白戦　チーム分け　webアプリ")
 
-# ipython = get_ipython()
-# if VAR_NAME not in ipython.user_ns:
-#   ipython.user_ns[VAR_NAME] = 0
+uploaded_file = st.file_uploader("Excelファイルをアップロードしてください　(.xlsx)", type="xlsx")
+if uploaded_file is not None:
+  #アップロードされたバイトデータを読み込み
+  file_bytes = uploaded_file.read()
+  #openpyxlで直接読み込む
+  from io import BytesIO
+  wb = load_workbook(filename=BytesIO(file_bytes), data_only=True)
+  #ここから「book」変数として扱う
+  book=wb
 
-# ipython.user_ns[VAR_NAME] += 1
+  name = '選手データ＆チーム分け結果１'
+  try:
+    sheet = book[name]
+  except KeyError:
+    st.error(f"シート'{name}'が見つかりません。Excel構造を確認してください。")
+    st.stop()
 
-# print(f"このセルは{ipython.user_ns[VAR_NAME]}回実行されました。")
-# n_count = ipython.user_ns[VAR_NAME]
-# print(n_count)
-#-----------------------------------------------------------------
+  if st.button("チーム分けを実行"):
+    with st.spinner("最適化中...少々お待ちください"):
+      main_file = '紅白戦02.xlsx'
+      sub_file = '紅白戦.xlsx'
+      name = '選手データ＆チーム分け結果１'
 
+      yomikomi=0
+  #2回目以降のファイル読み込み
+      if os.path.exists(main_file):
+        book = load_workbook(main_file)
+        yomikomi = 2
+        PP = openpyxl.load_workbook('紅白戦02.xlsx', data_only = True)
+        P_SUM = PP[name]
+        I_num = P_SUM.max_row - 3
+  #1回目のファイル読み込み
+      elif os.path.exists(sub_file):
+        book = load_workbook(sub_file)
+        yomikomi = 1
+        PP = openpyxl.load_workbook('紅白戦.xlsx', data_only = True)
+        P_SUM = PP[name]
+        I_num = P_SUM.max_row - 3
+      else:
+        st.error("対象ファイルがありません")
+        st.stop()
 
-main_file = '紅白戦02.xlsx'
-sub_file = '紅白戦.xlsx'
+      sheet = book[name]
 
-name = '選手データ＆チーム分け結果２'
+      J_num = 9
+      T_num = 2
 
+      I = [i+1 for i in range(I_num)]
+      J = [j+1 for j in range(J_num)]
+      T = [t+1 for t in range(T_num)]
 
-yomikomi=0
-#2回目以降のファイル読み込み
-if os.path.exists(main_file):
-  book = load_workbook(main_file)
-  print(f"{main_file} 読み込み")
-  yomikomi = 2
-  PP = openpyxl.load_workbook('紅白戦02.xlsx', data_only = True)
-  P_SUM = PP[name]
-  print(f"シート名：{name}")
-  I_num = P_SUM.max_row - 3
-#1回目のファイル読み込み
-elif os.path.exists(sub_file):
-  book = load_workbook(sub_file)
-  print(f"{sub_file} 読み込み")
-  yomikomi = 1
-  PP = openpyxl.load_workbook('紅白戦.xlsx', data_only = True)
-  P_SUM = PP[name]
-  print(f"シート名：{name}")
-  I_num = P_SUM.max_row - 3
-else:
-  print("ファイルなし")
+      E = {}#出場欠場
+      reg = 0
+      for i in I:
+        if sheet.cell(row=2+i, column=3).value is not None:
+          E[i] = sheet.cell(row=2+i, column=3).value
+          reg += 1
 
-sheet = book[name]
-
-J_num = 9
-T_num = 2
-
-I = [i+1 for i in range(I_num)]
-J = [j+1 for j in range(J_num)]
-T = [t+1 for t in range(T_num)]
-
-E = {}#出場欠場
-reg = 0
-for i in I:
-  if sheet.cell(row=2+i, column=3).value is not None:
-    E[i] = sheet.cell(row=2+i, column=3).value
-    reg += 1
-
-EE = 0
-for i in range(1,reg+1):
-  EE += E[i]
-
-P = {}#ポジションの評価値
-for i in range(1,reg+1):
-  for j in J:
-    P[(i, j)] = sheet.cell(row=2+i, column=3+j).value
-
-WP = {}#守りたいポジション
-for i in range(1,reg+1):
-  WP[i] = sheet.cell(row=2+i, column=13).value
-
-
-B = {}#打撃力の評価値
-for i in range(1,reg+1):
-  B[(i)] = sheet.cell(row=2+i, column=14).value
-
-
-problem = LpProblem('kouhaku', LpMinimize)
-
-
-#過去の紅白戦のチーム読み込み
-n_count = 0
-if yomikomi == 2:
-  tt = {}
-  #n_count += 1
-  while sheet.cell(row=3, column=15+n_count).value is not None:
-    n_count += 1
-    #紅白戦が5回目以降のとき、過去4回分の結果を反映するようにする。また、4回目までは、それまでの結果を反映するようにする。
-    #print(n_count+1-3)
-  # if n_count >= 4:
-  #   for c in range(n_count+1-4,n_count+1):
-  #     for i in range(1,reg+1):
-  #       tt[i, c] = sheet.cell(row=2+i, column=14+c).value
-  # else:
-  for c in range(1,n_count+1):
+      EE = 0
       for i in range(1,reg+1):
-        tt[i, c] = sheet.cell(row=2+i, column=14+c).value
+        EE += E[i]
 
-print(f"紅白戦{n_count+1}回目")
+      P = {}#ポジションの評価値
+      for i in range(1,reg+1):
+        for j in J:
+          P[(i, j)] = sheet.cell(row=2+i, column=3+j).value
 
-
-sheet = book['チーム分け結果詳細']
-for i_count in range(I_num):
-  for t_count in range(10):
-    sheet.cell(row=3+i_count, column=3+t_count).value = None
-
-
-#一つ前の紅白戦で同じチームの選手は1、そうじゃなければ0
-A = {}
-n = 0
-if yomikomi==2:
-  #紅白戦が5回目以降のとき、過去4回分の結果を反映するようにする。また、4回目までは、それまでの結果を反映するようにする。
-  # if n_count >= 4:
-  #     for c in range(n_count+1-4,n_count+1):
-  #       n += 1
-  #       print(f"c回数:{n}")
-  #       for i in range(1,reg):
-  #         for ii in range(i+1,reg+1):
-  #           if c == n_count+1-4:
-  #             A[i, ii] = 0
-  #           if tt[i, c] == tt[ii, c] and tt[i, c] >= 1  and tt[ii, c] >= 1:
-  #             A[i, ii] += 1
-  #     for i in range(1,reg):
-  #         for ii in range(i+1,reg+1):
-  #           A[i, ii] = A[i, ii]/4
+      WP = {}#守りたいポジション
+      for i in range(1,reg+1):
+        WP[i] = sheet.cell(row=2+i, column=13).value
 
 
-  # else:
-    for c in range(1,n_count+1):
+      B = {}#打撃力の評価値
+      for i in range(1,reg+1):
+        B[(i)] = sheet.cell(row=2+i, column=14).value
+
+
+      problem = LpProblem('kouhaku', LpMinimize)
+
+
+      #過去の紅白戦のチーム読み込み
+      n_count = 0
+      if yomikomi == 2:
+        tt = {}
+        while sheet.cell(row=3, column=15+n_count).value is not None:
+          n_count += 1
+        for c in range(1,n_count+1):
+            for i in range(1,reg+1):
+              tt[i, c] = sheet.cell(row=2+i, column=14+c).value
+
+      sheet = book['チーム分け結果詳細']
+      for i_count in range(I_num):
+        for t_count in range(10):
+          sheet.cell(row=3+i_count, column=3+t_count).value = None
+
+      #一つ前の紅白戦で同じチームの選手は1、そうじゃなければ0
+      A = {}
+      n = 0
+      if yomikomi==2:
+          for c in range(1,n_count+1):
+            for i in range(1,reg):
+              for ii in range(i+1,reg+1):
+                if c == 1:
+                  A[i, ii] = 0
+                if tt[i, c] == tt[ii, c] and tt[i, c] >= 1  and tt[ii, c] >= 1:
+                  A[i, ii] += 1
+          for i in range(1,reg):
+                for ii in range(i+1,reg+1):
+                  A[i, ii] = A[i, ii]/n_count
+      elif yomikomi==1:
+        for i in range(1,reg):
+          for ii in range(i+1,reg+1):
+            A[i, ii] = 0
+
+
+      #目的関数
+      x = {}
+      for i in range(1,reg+1):
+        for j in J:
+          for t in T:
+            if E[i] == 1 and P[(i,j)] > 0:
+              x[(i, j, t)] = LpVariable(f'x_{i}_{j}_{t}', cat=LpBinary)
+
+
+      #iとiiが同じチームであるときに1,そうでないとき0
+      Y = {}
+      for i in range(1,reg):
+        if E[i] == 1:
+          for ii in range(i+1,reg+1):
+            if E[ii] == 1:
+              Y[(i,ii)] = LpVariable(f'y_{i}_{ii}', cat=LpBinary)
+
+
+      ##制約条件
+      #出場する選手が欠場したり、欠場する選手が出場したりすることがない
+      for i in range(1,reg+1):
+        problem += lpSum(x[(i,j,t)] for j in J for t in T if (i,j,t) in x) == E[i], f"constraint_attend_{i}"
+
+      #チーム振り分けの際に両チームの人数をできるだけ均等にする
+      for t in T:
+          problem += lpSum(x[i,j,t] for i in range(1,reg+1) for j in J if (i,j,t) in x) >= EE//2, f"constraint_team_size_{t}"
+
+      #1チーム内で各ポジション守れる選手を一人以上選ぶこと
+      for j in J:
+        for t in T:
+          problem += lpSum(x[(i,j,t)] for i in range(1,reg+1) if (i,j,t) in x) >= 1, f"constraint_position_{j}_{t}"
+
+      #1チーム内でピッチャーを守れる選手を2人以上選ぶこと
+      count_pitcher = 0
+      for i in range(1,reg+1):
+        if P[(i,1)] >= 1:
+          count_pitcher += 1
+
+      if count_pitcher >= 4:
+        for t in T:
+          problem += lpSum(x[(i,1,t)] for i in range(1,reg+1) if (i,1,t) in x) >= 2, f"constraint_pitcher_{t}"
+
+      #守らせたいポジションがある選手はそのポジションを守らせる
+      for i in range(1,reg+1):
+        if WP[i] > 0:#and E[i] == 1:
+          problem += lpSum(x[(i,WP[i],t)] for t in T if (i,WP[i],t) in x) == 1, f"constraint_want_pojition_{i}"
+
+      #過去の紅白戦で同じチームになった選手はできるだけ違うチームに振り分ける
       for i in range(1,reg):
         for ii in range(i+1,reg+1):
-          if c == 1:
-            A[i, ii] = 0
-          if tt[i, c] == tt[ii, c] and tt[i, c] >= 1  and tt[ii, c] >= 1:
-            A[i, ii] += 1
-    for i in range(1,reg):
-          for ii in range(i+1,reg+1):
-            A[i, ii] = A[i, ii]/n_count
+          for t in T:
+            if (i,ii) in Y:
+              problem += Y[(i,ii)] >= lpSum(x[(i,j,t)] for j in J if (i,j,t) in x) + lpSum(x[(ii,j,t)] for j in J if (ii,j,t) in x) - 1, f"constraint_prior_same_team_{i}_{ii}_{t}"
 
+      #絶対値
+      z = LpVariable('z', lowBound=0, cat=LpContinuous)
 
+      power={}
+      for t in T:
+        power[t] = lpSum((P[(i,j)]+B[(i)])*(x[(i,j,t)]) for i in range(1,reg+1) for j in J if (i,j,t) in x)
 
-        # if i == 1:
-        #   print(f"tt[{i},{c}]:{tt[i,c]},tt[{ii},{c}]:{tt[ii,c]}")
-        #   print(f"選手{i}と選手{ii}が同じチームになった回数：{A[i, ii]}")
+      problem += z >= -(power[1]-power[2]), "constraint_abs1"
+      problem += z >= power[1]-power[2], "constraint_abs2"
 
+      #最小化実行
+      problem += 100*z + lpSum(A[i,ii]*Y[(i,ii)]for i in range(1,reg) if E[i] == 1 for ii in range(i+1,reg+1) if E[ii] == 1), "Objective"
 
-        # else:
-        #   A[i, ii] = 0
+      problem.writeLP('kouhaku.lp')
 
-
-elif yomikomi==1:
-  for i in range(1,reg):
-    for ii in range(i+1,reg+1):
-      A[i, ii] = 0
-
-print()
-
-# if yomikomi == 2:
-#   for i in range(1,reg):
-#     for ii in range(i+1,reg+1):
-#       print(f"選手{i}と選手{ii}が同じチームになった回数の確率：{A[i, ii]:.2f}")
-
-# print()
-
-# for i in range(1,reg):
-#     for ii in range(i+1,reg+1):
-#       print(f"選手{i}と選手{ii}が同じチームになった回数：{A[i, ii]}")
-
-#目的関数
-x = {}
-for i in range(1,reg+1):
-  for j in J:
-    for t in T:
-      if E[i] == 1 and P[(i,j)] > 0:
-        x[(i, j, t)] = LpVariable(f'x_{i}_{j}_{t}', cat=LpBinary)
-
-
-#if yomikomi == 2:
-  #iとiiが同じチームであるときに1,そうでないとき0
-Y = {}
-for i in range(1,reg):
-  if E[i] == 1:
-    for ii in range(i+1,reg+1):
-      if E[ii] == 1:
-        Y[(i,ii)] = LpVariable(f'y_{i}_{ii}', cat=LpBinary)
-
-
-##制約条件
-#出場する選手が欠場したり、欠場する選手が出場したりすることがない
-for i in range(1,reg+1):
-  problem += lpSum(x[(i,j,t)] for j in J for t in T if (i,j,t) in x) == E[i], f"constraint_attend_{i}"
-
-#チーム振り分けの際に両チームの人数をできるだけ均等にする
-# if EE % 2 == 0:
-#   for t in T:
-#     model += xsum(x[i,j,t] for i in range(1,reg+1) for j in J if (i,j,t) in x) == EE//2
-# else:
-#   for t in T:
-#     model += xsum(x[i,j,t] for i in range(1,reg+1) for j in J if (i,j,t) in x) >= EE//2
-#     model += xsum(x[i,j,t] for i in range(1,reg+1) for j in J if (i,j,t) in x) <= (EE//2) + 1
-
-for t in T:
-    problem += lpSum(x[i,j,t] for i in range(1,reg+1) for j in J if (i,j,t) in x) >= EE//2, f"constraint_team_size_{t}"
-
-
-
-#1チーム内で各ポジション守れる選手を一人以上選ぶこと
-for j in J:
-  for t in T:
-    problem += lpSum(x[(i,j,t)] for i in range(1,reg+1) if (i,j,t) in x) >= 1, f"constraint_position_{j}_{t}"
-
-#1チーム内でピッチャーを守れる選手を2人以上選ぶこと
-count_pitcher = 0
-for i in range(1,reg+1):
-  if P[(i,1)] >= 1:
-    count_pitcher += 1
-
-if count_pitcher >= 4:
-  for t in T:
-    problem += lpSum(x[(i,1,t)] for i in range(1,reg+1) if (i,1,t) in x) >= 2, f"constraint_pitcher_{t}"
-
-#守らせたいポジションがある選手はそのポジションを守らせる
-for i in range(1,reg+1):
-  if WP[i] > 0:#and E[i] == 1:
-    problem += lpSum(x[(i,WP[i],t)] for t in T if (i,WP[i],t) in x) == 1, f"constraint_want_pojition_{i}"
-
-#過去の紅白戦で同じチームになった選手はできるだけ違うチームに振り分ける
-for i in range(1,reg):
-  for ii in range(i+1,reg+1):
-    #print(f"i:{i},ii:{ii}")
-    for t in T:
-      if (i,ii) in Y:
-        problem += Y[(i,ii)] >= lpSum(x[(i,j,t)] for j in J if (i,j,t) in x) + lpSum(x[(ii,j,t)] for j in J if (ii,j,t) in x) - 1, f"constraint_prior_same_team_{i}_{ii}_{t}"
-
-#絶対値
-z = LpVariable('z', lowBound=0, cat=LpContinuous)
-
-power={}
-for t in T:
-  power[t] = lpSum((P[(i,j)]+B[(i)])*(x[(i,j,t)]) for i in range(1,reg+1) for j in J if (i,j,t) in x)
-
-problem += z >= -(power[1]-power[2]), "constraint_abs1"
-problem += z >= power[1]-power[2], "constraint_abs2"
-
-#最小化実行
-
-#model.objective = minimize(100*z+(xsum(A[i,ii]*Y[i,ii] for i in range(1,reg) if E[i] == 1 for ii in range(i+1,reg+1) if E[ii] == 1)))
-problem += 100*z + lpSum(A[i,ii]*Y[(i,ii)]for i in range(1,reg) if E[i] == 1 for ii in range(i+1,reg+1) if E[ii] == 1), "Objective"
-
-problem.writeLP('kouhaku.lp')
-
-
-time_limit = 60
-
-print("最適化開始")
-start_time = time.time()
-status = problem.solve(PULP_CBC_CMD(timeLimit=60, msg=True))
-end_time = time.time()
+      st.write("最適化開始")
+      start_time = time.time()
+      status = problem.solve(PULP_CBC_CMD(timeLimit=60, msg=True))
+      end_time = time.time()
 #pulp.LpStatus[status]
-print("最適化終了")
-elapsed_time = end_time - start_time
-print(f"最適化実行時間:{elapsed_time:.3f}秒")
-print()
+      st.write("最適化終了")
+      elapsed_time = end_time - start_time
+      st.write(f"最適化実行時間: {elapsed_time:.3f}秒")
+      st.write(f"ステータス: {pulp.LpStatus[status]}")
 
-
-# if elapsed_time >= time_limit:
-#   print('時間制限を超えたため、ギャップを変更し再実行')
-#   model.max_gap = 0.05
-#   print("最適化2開始")
-#   start_time_2 = time.time()
-#   status = model.optimize(max_seconds=time_limit)
-#   end_time_2 = time.time()
-#   print("最適化2終了")
-#   elapsed_time_2 = end_time_2 - start_time_2
-#   print(f"最適化実行時間2:{elapsed_time_2:.3f}秒")
 
 
 #エクセル出力
 
-if pulp.LpStatus[status] == 'Optimal':
-  print('最適値 =', problem.objective.value())
-  for i in range(1,reg+1):
-    for j in J:
-      for t in T:
-        if (i,j,t) in x and x[(i,j,t)].varValue >= 0.99:
-          sheet = book[name]
-          sheet.cell(row=2+i,column=15+n_count).value = t
-          sheet = book['チーム分け結果詳細']
-          sheet.cell(row=2+i,column=2+(5*t-4)).value = 1
-          sheet.cell(row=2+i,column=3+(5*t-4)).value = j
-          sheet.cell(row=2+i,column=4+(5*t-4)).value = P[(i,j)]
-          sheet.cell(row=2+i,column=5+(5*t-4)).value = B[(i)]
-          sheet.cell(row=2+i,column=6+(5*t-4)).value = P[(i,j)]+B[(i)]
+      if pulp.LpStatus[status] == 'Optimal':
+        st.write("結果をExselに書き込みます...")
+        for i in range(1,reg+1):
+          for j in J:
+            for t in T:
+              if (i,j,t) in x and x[(i,j,t)].varValue >= 0.99:
+                sheet = book[name]
+                sheet.cell(row=2+i,column=15+n_count).value = t
+                sheet = book['チーム分け結果詳細']
+                sheet.cell(row=2+i,column=2+(5*t-4)).value = 1
+                sheet.cell(row=2+i,column=3+(5*t-4)).value = j
+                sheet.cell(row=2+i,column=4+(5*t-4)).value = P[(i,j)]
+                sheet.cell(row=2+i,column=5+(5*t-4)).value = B[(i)]
+                sheet.cell(row=2+i,column=6+(5*t-4)).value = P[(i,j)]+B[(i)]
 
-  sheet = book[name]
-  for i in range(1,reg+1):
-    if sheet.cell(row=2+i, column=15+n_count).value is None:
-      sheet.cell(row=2+i, column=15+n_count).value = 0
+        sheet = book[name]
+        for i in range(1,reg+1):
+          if sheet.cell(row=2+i, column=15+n_count).value is None:
+            sheet.cell(row=2+i, column=15+n_count).value = 0
 
-  book.save('紅白戦02.xlsx')
+        #book.save('紅白戦02.xlsx')
 
-elif yomikomi == 0:
-  print('最適解が求まりませんでした。')
+      elif elapsed_time >= 60:
+        st.write("結果をExselに書き込みます...")
+        for i in range(1,reg+1):
+          for j in J:
+            for t in T:
+              if (i,j,t) in x and x[(i,j,t)].varValue >= 0.99:
+                sheet = book[name]
+                sheet.cell(row=2+i,column=15+n_count).value = t
+                sheet = book['チーム分け結果詳細']
+                sheet.cell(row=2+i,column=2+(5*t-4)).value = 1
+                sheet.cell(row=2+i,column=3+(5*t-4)).value = j
+                sheet.cell(row=2+i,column=4+(5*t-4)).value = P[(i,j)]
+                sheet.cell(row=2+i,column=5+(5*t-4)).value = B[(i)]
+                sheet.cell(row=2+i,column=6+(5*t-4)).value = P[(i,j)]+B[(i)]
 
-else:
-  print('最適値? =', problem.objective.value())
-  for i in range(1,reg+1):
-    for j in J:
-      for t in T:
-        if (i,j,t) in x and x[(i,j,t)].varValue >= 0.99:
-          sheet = book[name]
-          sheet.cell(row=2+i,column=15+n_count).value = t
-          sheet = book['チーム分け結果詳細']
-          sheet.cell(row=2+i,column=2+(5*t-4)).value = 1
-          sheet.cell(row=2+i,column=3+(5*t-4)).value = j
-          sheet.cell(row=2+i,column=4+(5*t-4)).value = P[(i,j)]
-          sheet.cell(row=2+i,column=5+(5*t-4)).value = B[(i)]
-          sheet.cell(row=2+i,column=6+(5*t-4)).value = P[(i,j)]+B[(i)]
+        sheet = book[name]
+        for i in range(1,reg+1):
+          if sheet.cell(row=2+i, column=15+n_count).value is None:
+            sheet.cell(row=2+i, column=15+n_count).value = 0
 
-  sheet = book[name]
-  for i in range(1,reg+1):
-    if sheet.cell(row=2+i, column=15+n_count).value is None:
-      sheet.cell(row=2+i, column=15+n_count).value = 0
+        #book.save('紅白戦02.xlsx')
 
-  book.save('紅白戦02.xlsx')
+        #保存
+        output_stream = BytesIO()
+        book.save(output_stream)
+        output_stream.seek(0)
+
+        st.download_button(
+            label="結果ファイルをダウンロード",
+            data=output_stream,
+            file_name=f"結果_{uploaded_file.name}",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
+      else:
+        st.error("最適解が得られませんでした。")
