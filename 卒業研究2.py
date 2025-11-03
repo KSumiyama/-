@@ -7,8 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1Y4qylwIG3Hkf-brLXPXb3dGk_XIcp9S7
 """
 
-!pip install pulp
-
 import pulp
 from pulp import LpProblem, LpVariable, lpSum, LpMinimize, LpBinary, LpContinuous, PULP_CBC_CMD
 from pulp import LpStatus
@@ -345,63 +343,3 @@ else:
       sheet.cell(row=2+i, column=15+n_count).value = 0
 
   book.save('紅白戦02.xlsx')
-
-from pulp import LpProblem, LpVariable, lpSum, LpMinimize, LpBinary, LpContinuous, PULP_CBC_CMD
-
-# モデル定義
-problem = LpProblem("kouhaku", LpMinimize)
-
-# 変数定義
-x = {}
-for i in range(1, reg+1):
-    for j in J:
-        for t in T:
-            if E[i] == 1 and P[(i,j)] > 0:
-                x[(i,j,t)] = LpVariable(f"x_{i}_{j}_{t}", cat=LpBinary)
-
-Y = {}
-for i in range(1, reg):
-    if E[i] == 1:
-        for ii in range(i+1, reg+1):
-            if E[ii] == 1:
-                Y[(i,ii)] = LpVariable(f"y_{i}_{ii}", cat=LpBinary)
-
-z = LpVariable("z", lowBound=0, cat=LpContinuous)
-
-# 補助量定義（power）
-power = {}
-for t in T:
-    power[t] = lpSum((P[(i,j)] + B[(i)]) * x[(i,j,t)]
-                     for i in range(1,reg+1)
-                     for j in J
-                     if (i,j,t) in x)
-
-# 制約追加
-for i in range(1, reg+1):
-    problem += lpSum(x[(i,j,t)] for j in J for t in T if (i,j,t) in x) == E[i], f"constraint_attend_{i}"
-
-for t in T:
-    problem += lpSum(x[(i,j,t)] for i in range(1,reg+1) for j in J if (i,j,t) in x) >= EE//2, f"constraint_team_size_{t}"
-
-for j in J:
-    for t in T:
-        problem += lpSum(x[(i,j,t)] for i in range(1,reg+1) if (i,j,t) in x) >= 1, f"constraint_position_{j}_{t}"
-
-# …（他の制約も同様に書き換え）…
-
-for i, ii in Y:
-    for t in T:
-        problem += Y[(i,ii)] >= lpSum(x[(i,j,t)] for j in J if (i,j,t) in x) + lpSum(x[(ii,j,t)] for j in J if (ii,j,t) in x) - 1, f"constraint_prior_same_team_{i}_{ii}_{t}"
-
-# 絶対値制約
-problem += z >= -(power[1] - power[2]), "constraint_abs1"
-problem += z >= (power[1] - power[2]), "constraint_abs2"
-
-# 目的関数
-problem += 100 * z + lpSum(A[(i,ii)] * Y[(i,ii)]
-                         for i in range(1,reg)
-                         for ii in range(i+1, reg+1)
-                         if E[i] == 1 and E[ii] == 1 and (i,ii) in Y), "Objective"
-
-# ソルバー実行
-status = problem.solve(PULP_CBC_CMD(timeLimit=60, msg=True))
