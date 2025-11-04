@@ -247,6 +247,11 @@ if uploaded_file is not None:
         book.save(output_stream)
         output_stream.seek(0)
 
+        df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細')
+
+        st.subheader("最適化結果（チーム分け結果）")
+        st.dataframe(df_result, use_container_width=True)
+
         st.download_button(
             label="結果ファイルをダウンロード",
             data=output_stream,
