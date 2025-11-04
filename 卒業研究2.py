@@ -16,6 +16,7 @@ import os
 import openpyxl
 import time
 import streamlit as st
+import pandas as pd
 from io import BytesIO
 
 st.title("紅白戦　チーム分け　webアプリ")
@@ -32,9 +33,12 @@ if uploaded_file is not None:
 
   name = '選手データ＆チーム分け結果１'
   try:
+    df = pd.read_excel(BytesIO(file_bytes), sheet_name='選手データ＆チーム分け結果１')
+    st.subheader("アップロードされたデータ（先頭10行）")
+    st.datafream(df.head(10), use_container_width=True)
     sheet = book[name]
-  except KeyError:
-    st.error(f"シート'{name}'が見つかりません。Excel構造を確認してください。")
+  except Exception as e:
+    st.error(f"読み込み中にエラーが発生しました:{e}")
     st.stop()
 
   if st.button("チーム分けを実行"):
