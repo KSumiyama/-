@@ -238,6 +238,18 @@ if uploaded_file is not None:
           if sheet.cell(row=2+i, column=15+n_count).value is None:
             sheet.cell(row=2+i, column=15+n_count).value = 0
 
+        #保存
+        output_stream = BytesIO()
+        book.save(output_stream)
+        output_stream.seek(0)
+
+        st.download_button(
+            label="結果ファイルをダウンロード",
+            data=output_stream,
+            file_name=f"結果_{uploaded_file.name}",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
+
         #book.save('紅白戦02.xlsx')
 
       elif elapsed_time >= 60:
