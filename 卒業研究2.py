@@ -34,8 +34,8 @@ if uploaded_file is not None:
   name = '選手データ＆チーム分け結果１'
   try:
     df = pd.read_excel(BytesIO(file_bytes), sheet_name='選手データ＆チーム分け結果１')
-    st.subheader("アップロードされたデータ（先頭10行）")
-    st.datafream(df.head(10), use_container_width=True)
+    st.subheader("アップロードされたデータ（先頭29行）")
+    st.datafream(df.head(29), use_container_width=True)
     sheet = book[name]
   except Exception as e:
     st.error(f"読み込み中にエラーが発生しました:{e}")
