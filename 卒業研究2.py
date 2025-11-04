@@ -247,8 +247,18 @@ if uploaded_file is not None:
         book.save(output_stream)
         output_stream.seek(0)
 
-        df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細')
-
+        try:
+            df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細')
+        except Exception as e:
+            st.error(f"結果読み込み中にエラーが発生しました：{e}")
+            st.download_button(
+                label="結果ファイルをダウンロード",
+                data=output_stream.getvalue(),
+                file_name=f"結果_{uploaded_file.name}",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
+            st.stop()
+                
         st.subheader("最適化結果（チーム分け結果）")
         st.dataframe(df_result, use_container_width=True)
 
@@ -288,7 +298,17 @@ if uploaded_file is not None:
         book.save(output_stream)
         output_stream.seek(0)
 
-        df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細')
+        try:
+            df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細')
+        except Exception as e:
+            st.error(f"結果読み込み中にエラーが発生しました：{e}")
+            st.download_button(
+                label="結果ファイルをダウンロード",
+                data=output_stream.getvalue(),
+                file_name=f"結果_{uploaded_file.name}",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
+            st.stop()
 
         st.subheader("最適化結果（チーム分け結果）")
         st.dataframe(df_result, use_container_width=True)
