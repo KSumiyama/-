@@ -242,6 +242,9 @@ if uploaded_file is not None:
           if sheet.cell(row=2+i, column=15+n_count).value is None:
             sheet.cell(row=2+i, column=15+n_count).value = 0
 
+        save_filename = f"紅白戦{n_count}.xlsx"
+        book.save(save_filename)
+
         #保存
         output_stream = BytesIO()
         book.save(output_stream)
@@ -261,6 +264,8 @@ if uploaded_file is not None:
                 
         st.subheader("最適化結果（チーム分け結果）")
         st.dataframe(df_result, use_container_width=True)
+
+        file_name = f"紅白戦{n_count}.xlsx"
 
         st.download_button(
             label="結果ファイルをダウンロード",
@@ -291,7 +296,8 @@ if uploaded_file is not None:
           if sheet.cell(row=2+i, column=15+n_count).value is None:
             sheet.cell(row=2+i, column=15+n_count).value = 0
 
-        #book.save('紅白戦02.xlsx')
+        save_filename = f"紅白戦{n_count}.xlsx"
+        book.save(save_filename)
 
         #保存
         output_stream = BytesIO()
@@ -312,6 +318,8 @@ if uploaded_file is not None:
 
         st.subheader("最適化結果（チーム分け結果）")
         st.dataframe(df_result, use_container_width=True)
+
+        file_name = f"紅白戦{n_count}.xlsx"
 
         st.download_button(
             label="結果ファイルをダウンロード",
