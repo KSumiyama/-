@@ -257,7 +257,10 @@ if uploaded_file is not None:
             st.download_button(
                 label="結果ファイルをダウンロード",
                 data=output_stream.getvalue(),
-                file_name=f"結果_{uploaded_file.name}",
+                if yomikomi == 1:
+                    file_name=f"{uploaded_file.name}02",
+                else:
+                    file_name=f"{uploaded_file.name}",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
             st.stop()
@@ -270,7 +273,10 @@ if uploaded_file is not None:
         st.download_button(
             label="結果ファイルをダウンロード",
             data=output_stream,
-            file_name=f"結果_{uploaded_file.name}",
+            if yomikomi == 1:
+                    file_name=f"{uploaded_file.name}02",
+            else:
+                    file_name=f"{uploaded_file.name}",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
 
@@ -311,7 +317,10 @@ if uploaded_file is not None:
             st.download_button(
                 label="結果ファイルをダウンロード",
                 data=output_stream.getvalue(),
-                file_name=f"結果_{uploaded_file.name}",
+                if yomikomi == 1:
+                    file_name=f"{uploaded_file.name}02",
+                else:
+                    file_name=f"{uploaded_file.name}",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
             st.stop()
@@ -324,7 +333,10 @@ if uploaded_file is not None:
         st.download_button(
             label="結果ファイルをダウンロード",
             data=output_stream,
-            file_name=f"結果_{uploaded_file.name}",
+            if yomikomi == 1:
+                file_name=f"{uploaded_file.name}02",
+            else:
+                file_name=f"{uploaded_file.name}",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
       else:
