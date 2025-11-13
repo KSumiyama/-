@@ -271,7 +271,7 @@ if uploaded_file is not None:
             st.download_button(
                 label="結果ファイルをダウンロード",
                 data=output_stream,
-                file_name=file.name,
+                file_name=file_name,
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
         else:
@@ -300,7 +300,7 @@ if uploaded_file is not None:
             st.download_button(
                 label="結果ファイルをダウンロード",
                 data=output_stream,
-                file_name=file.name,
+                file_name=file_name,
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
         
@@ -359,7 +359,7 @@ if uploaded_file is not None:
             st.download_button(
                 label="結果ファイルをダウンロード",
                 data=output_stream,
-                file_name=file.name,
+                file_name=file_name,
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
         else:
@@ -388,7 +388,7 @@ if uploaded_file is not None:
             st.download_button(
                 label="結果ファイルをダウンロード",
                 data=output_stream,
-                file_name=file.name,
+                file_name=file_name,
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
         
