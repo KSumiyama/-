@@ -245,36 +245,70 @@ if uploaded_file is not None:
         save_filename = f"紅白戦{n_count}.xlsx"
         book.save(save_filename)
 
-        #保存
-        output_stream = BytesIO()
-        book.save(output_stream)
-        output_stream.seek(0)
+        if yomikomi == 2:
+            #保存
+            output_stream = BytesIO()
+            book.save(output_stream)
+            output_stream.seek(0)
 
-        try:
-            df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細')
-        except Exception as e:
-            st.error(f"結果読み込み中にエラーが発生しました：{e}")
+            try:
+                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細')
+            except Exception as e:
+                st.error(f"結果読み込み中にエラーが発生しました：{e}")
+                st.download_button(
+                    label="結果ファイルをダウンロード",
+                    data=output_stream.getvalue(),
+                    file_name=f"{uploaded_file.name}",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                )
+                st.stop()
+
+            st.subheader("最適化結果（チーム分け結果）")
+            st.dataframe(df_result, use_container_width=True)
+
+            file_name = f"紅白戦０２.xlsx"
+
             st.download_button(
                 label="結果ファイルをダウンロード",
-                data=output_stream.getvalue(),
+                data=output_stream,
                 file_name=f"{uploaded_file.name}",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
-            st.stop()
-                
-        st.subheader("最適化結果（チーム分け結果）")
-        st.dataframe(df_result, use_container_width=True)
+        else:
+            #保存
+            output_stream = BytesIO()
+            book.save(output_stream)
+            output_stream.seek(0)
 
-        file_name = f"紅白戦{n_count}.xlsx"
+            try:
+                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細')
+            except Exception as e:
+                st.error(f"結果読み込み中にエラーが発生しました：{e}")
+                st.download_button(
+                    label="結果ファイルをダウンロード",
+                    data=output_stream.getvalue(),
+                    file_name=f"{uploaded_file.name}",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                )
+                st.stop()
 
-        st.download_button(
-            label="結果ファイルをダウンロード",
-            data=output_stream,
-            file_name=f"{uploaded_file.name}",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
+            st.subheader("最適化結果（チーム分け結果）")
+            st.dataframe(df_result, use_container_width=True)
 
-        #book.save('紅白戦02.xlsx')
+            file_name = f"紅白戦０２.xlsx"
+
+            st.download_button(
+                label="結果ファイルをダウンロード",
+                data=output_stream,
+                file_name=f"{uploaded_file.name}０２",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
+        
+
+
+
+
+        
 
       elif elapsed_time >= 60:
         st.write("結果をExselに書き込みます...")
@@ -295,37 +329,68 @@ if uploaded_file is not None:
         for i in range(1,reg+1):
           if sheet.cell(row=2+i, column=15+n_count).value is None:
             sheet.cell(row=2+i, column=15+n_count).value = 0
-
-        save_filename = f"紅白戦{n_count}.xlsx"
+        
+        save_filename = f"紅白戦０２.xlsx"
         book.save(save_filename)
 
-        #保存
-        output_stream = BytesIO()
-        book.save(output_stream)
-        output_stream.seek(0)
+        if yomikomi == 2:
+            #保存
+            output_stream = BytesIO()
+            book.save(output_stream)
+            output_stream.seek(0)
 
-        try:
-            df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細')
-        except Exception as e:
-            st.error(f"結果読み込み中にエラーが発生しました：{e}")
+            try:
+                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細')
+            except Exception as e:
+                st.error(f"結果読み込み中にエラーが発生しました：{e}")
+                st.download_button(
+                    label="結果ファイルをダウンロード",
+                    data=output_stream.getvalue(),
+                    file_name=f"{uploaded_file.name}",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                )
+                st.stop()
+
+            st.subheader("最適化結果（チーム分け結果）")
+            st.dataframe(df_result, use_container_width=True)
+
+            file_name = f"紅白戦０２.xlsx"
+
             st.download_button(
                 label="結果ファイルをダウンロード",
-                data=output_stream.getvalue(),
+                data=output_stream,
                 file_name=f"{uploaded_file.name}",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
-            st.stop()
+        else:
+            #保存
+            output_stream = BytesIO()
+            book.save(output_stream)
+            output_stream.seek(0)
 
-        st.subheader("最適化結果（チーム分け結果）")
-        st.dataframe(df_result, use_container_width=True)
+            try:
+                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細')
+            except Exception as e:
+                st.error(f"結果読み込み中にエラーが発生しました：{e}")
+                st.download_button(
+                    label="結果ファイルをダウンロード",
+                    data=output_stream.getvalue(),
+                    file_name=f"{uploaded_file.name}",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                )
+                st.stop()
 
-        file_name = f"紅白戦{n_count}.xlsx"
+            st.subheader("最適化結果（チーム分け結果）")
+            st.dataframe(df_result, use_container_width=True)
 
-        st.download_button(
-            label="結果ファイルをダウンロード",
-            data=output_stream,
-            file_name=f"{uploaded_file.name}",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
+            file_name = f"紅白戦０２.xlsx"
+
+            st.download_button(
+                label="結果ファイルをダウンロード",
+                data=output_stream,
+                file_name=f"{uploaded_file.name}０２",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
+        
       else:
         st.error("最適解が得られませんでした。")
