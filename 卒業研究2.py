@@ -266,12 +266,12 @@ if uploaded_file is not None:
             st.subheader("最適化結果（チーム分け結果）")
             st.dataframe(df_result, use_container_width=True)
 
-            file_name = f"紅白戦０２.xlsx"
+            file_name = "紅白戦０２.xlsx"
 
             st.download_button(
                 label="結果ファイルをダウンロード",
                 data=output_stream,
-                file_name=f"{uploaded_file.name}",
+                file_name=file.name,
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
         else:
@@ -295,12 +295,12 @@ if uploaded_file is not None:
             st.subheader("最適化結果（チーム分け結果）")
             st.dataframe(df_result, use_container_width=True)
 
-            file_name = f"紅白戦０２.xlsx"
+            file_name = "紅白戦０２.xlsx"
 
             st.download_button(
                 label="結果ファイルをダウンロード",
                 data=output_stream,
-                file_name=f"{uploaded_file.name}０２",
+                file_name=file.name,
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
         
@@ -354,12 +354,12 @@ if uploaded_file is not None:
             st.subheader("最適化結果（チーム分け結果）")
             st.dataframe(df_result, use_container_width=True)
 
-            file_name = f"紅白戦０２.xlsx"
+            file_name = "紅白戦０２.xlsx"
 
             st.download_button(
                 label="結果ファイルをダウンロード",
                 data=output_stream,
-                file_name=f"{uploaded_file.name}",
+                file_name=file.name,
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
         else:
@@ -383,12 +383,12 @@ if uploaded_file is not None:
             st.subheader("最適化結果（チーム分け結果）")
             st.dataframe(df_result, use_container_width=True)
 
-            file_name = f"紅白戦０２.xlsx"
+            file_name = "紅白戦０２.xlsx"
 
             st.download_button(
                 label="結果ファイルをダウンロード",
                 data=output_stream,
-                file_name=f"{uploaded_file.name}０２",
+                file_name=file.name,
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
         
