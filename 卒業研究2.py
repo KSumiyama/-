@@ -49,20 +49,20 @@ if uploaded_file is not None:
 
       yomikomi=0
   #2回目以降のファイル読み込み
-      if os.path.exists(main_file):
-        book = load_workbook(main_file)
+      if uploaded_file.name == "紅白戦02.xlsx":
+        #book = load_workbook(main_file)
         st.write("2回目以降の紅白戦")
         yomikomi = 2
-        PP = openpyxl.load_workbook('紅白戦02.xlsx', data_only = True)
-        P_SUM = PP[name]
+        #PP = openpyxl.load_workbook('紅白戦02.xlsx', data_only = True)
+        P_SUM = book[name]
         I_num = P_SUM.max_row - 3
   #1回目のファイル読み込み
-      elif os.path.exists(sub_file):
-        book = load_workbook(sub_file)
+      elif uploaded_file.name == "紅白戦.xlsx":
+        #book = load_workbook(sub_file)
         st.write("1回目の紅白戦")
         yomikomi = 1
-        PP = openpyxl.load_workbook('紅白戦.xlsx', data_only = True)
-        P_SUM = PP[name]
+        #PP = openpyxl.load_workbook('紅白戦.xlsx', data_only = True)
+        P_SUM = book[name]
         I_num = P_SUM.max_row - 3
       else:
         st.error("対象ファイルがありません")
