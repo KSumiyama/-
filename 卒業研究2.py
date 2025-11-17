@@ -43,7 +43,7 @@ if uploaded_file is not None:
 
   if st.button("チーム分けを実行"):
     with st.spinner("最適化中...少々お待ちください"):
-      main_file = '結果_紅白戦.xlsx'
+      main_file = '紅白戦02.xlsx'
       sub_file = '紅白戦.xlsx'
       name = '選手データ＆チーム分け結果１'
 
@@ -266,7 +266,7 @@ if uploaded_file is not None:
             st.subheader("最適化結果（チーム分け結果）")
             st.dataframe(df_result, use_container_width=True)
 
-            file_name = "紅白戦０２.xlsx"
+            file_name = "紅白戦02.xlsx"
 
             st.download_button(
                 label="結果ファイルをダウンロード",
@@ -295,7 +295,7 @@ if uploaded_file is not None:
             st.subheader("最適化結果（チーム分け結果）")
             st.dataframe(df_result, use_container_width=True)
 
-            file_name = "紅白戦０２.xlsx"
+            file_name = "紅白戦02.xlsx"
 
             st.download_button(
                 label="結果ファイルをダウンロード",
@@ -330,7 +330,7 @@ if uploaded_file is not None:
           if sheet.cell(row=2+i, column=15+n_count).value is None:
             sheet.cell(row=2+i, column=15+n_count).value = 0
         
-        save_filename = f"紅白戦０２.xlsx"
+        save_filename = f"紅白戦02.xlsx"
         book.save(save_filename)
 
         if yomikomi == 2:
@@ -354,7 +354,7 @@ if uploaded_file is not None:
             st.subheader("最適化結果（チーム分け結果）")
             st.dataframe(df_result, use_container_width=True)
 
-            file_name = "紅白戦０２.xlsx"
+            file_name = "紅白戦02.xlsx"
 
             st.download_button(
                 label="結果ファイルをダウンロード",
@@ -383,7 +383,7 @@ if uploaded_file is not None:
             st.subheader("最適化結果（チーム分け結果）")
             st.dataframe(df_result, use_container_width=True)
 
-            file_name = "紅白戦０２.xlsx"
+            file_name = "紅白戦02.xlsx"
 
             st.download_button(
                 label="結果ファイルをダウンロード",
