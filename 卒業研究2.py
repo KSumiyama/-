@@ -51,7 +51,7 @@ if uploaded_file is not None:
   #2回目以降のファイル読み込み
       if uploaded_file.name == "紅白戦02.xlsx":
         #book = load_workbook(main_file)
-        st.write("2回目以降の紅白戦")
+        #st.write("2回目以降の紅白戦")
         yomikomi = 2
         #PP = openpyxl.load_workbook('紅白戦02.xlsx', data_only = True)
         P_SUM = book[name]
@@ -59,7 +59,7 @@ if uploaded_file is not None:
   #1回目のファイル読み込み
       elif uploaded_file.name == "紅白戦.xlsx":
         #book = load_workbook(sub_file)
-        st.write("1回目の紅白戦")
+        #st.write("1回目の紅白戦")
         yomikomi = 1
         #PP = openpyxl.load_workbook('紅白戦.xlsx', data_only = True)
         P_SUM = book[name]
@@ -210,6 +210,7 @@ if uploaded_file is not None:
 
       problem.writeLP('kouhaku.lp')
 
+      st.write(f"{n_count}回目の紅白戦")
       st.write("最適化開始")
       start_time = time.time()
       status = problem.solve(PULP_CBC_CMD(timeLimit=60, msg=True))
