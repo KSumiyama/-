@@ -210,7 +210,7 @@ if uploaded_file is not None:
 
       problem.writeLP('kouhaku.lp')
 
-      st.write(f"{n_count}回目の紅白戦")
+      st.write(f"{n_count+1}回目の紅白戦")
       st.write("最適化開始")
       start_time = time.time()
       status = problem.solve(PULP_CBC_CMD(timeLimit=60, msg=True))
