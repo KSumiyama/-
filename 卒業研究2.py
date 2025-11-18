@@ -40,7 +40,7 @@ if uploaded_file is not None:
     st.dataframe(df, use_container_width=True)
     
     st.subheader("アップロードされたデータ")
-    st.dataframe(df.head(29), use_container_width=True)
+    st.dataframe(df.head(28), use_container_width=True)
     sheet = book[name]
   except Exception as e:
     st.error(f"読み込み中にエラーが発生しました:{e}")
