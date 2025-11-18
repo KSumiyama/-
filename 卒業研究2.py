@@ -38,6 +38,12 @@ if uploaded_file is not None:
     df = df.drop(0).reset_index(drop=True)
     df = df.drop(columns=df.columns[0])
     st.dataframe(df, use_container_width=True)
+
+    cols = df.columns.tolist()
+    col_to_move = cols.pop(13)
+    col.insert(3, col_to_move)
+
+    df = df[cols]
     
     st.subheader("アップロードされたデータ")
     st.dataframe(df.head(28), use_container_width=True)
