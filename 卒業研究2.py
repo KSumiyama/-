@@ -39,7 +39,7 @@ if uploaded_file is not None:
     df = df.drop(columns=df.columns[0])
     st.dataframe(df, use_container_width=True)
 
-    st.write("列順（変更前）：",df.columns.tolist())  
+    #st.write("列順（変更前）：",df.columns.tolist())  
 
     excel_col_index = 13
     df_col_index = excel_col_index - 1
@@ -50,7 +50,16 @@ if uploaded_file is not None:
         new_cols.insert(2, col14)
         df = df[new_cols]
 
-    st.write("列順（変更後）：",df.columns.tolist())
+    excel_col_index_2 = 12
+    df_col_index_2 = df_col_index_2 - 1
+
+    if len(df.columns) > df_col_index_2:
+        new_cols_2 = df.columns.tolist()
+        col13 = new_cols_2.pop(df_col_index)
+        new_cols_2.insert(3, col13)
+        df = df[new_cols_2]
+
+    #st.write("列順（変更後）：",df.columns.tolist())
     
     
 
