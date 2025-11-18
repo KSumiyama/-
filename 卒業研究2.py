@@ -41,7 +41,7 @@ if uploaded_file is not None:
 
     cols = df.columns.tolist()
     col_to_move = cols.pop(13)
-    col.insert(3, col_to_move)
+    cols.insert(3, col_to_move)
 
     df = df[cols]
     
