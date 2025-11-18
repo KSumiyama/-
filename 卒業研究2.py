@@ -34,10 +34,10 @@ if uploaded_file is not None:
   name = '選手データ＆チーム分け結果１'
   try:
     df = pd.read_excel(BytesIO(file_bytes), sheet_name='選手データ＆チーム分け結果１')
-    #1行目削除
+    #先頭行削除
     df = df.drop(df.index[0]).reset_index(drop=True)
     #st.subheader
-    st.dataframe(df.iloc[[0]], use_container_width=True)
+    st.dataframe(df, use_container_width=True)
     
     st.subheader("アップロードされたデータ")
     st.dataframe(df.head(29), use_container_width=True)
