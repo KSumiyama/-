@@ -35,7 +35,7 @@ if uploaded_file is not None:
   try:
     df = pd.read_excel(BytesIO(file_bytes), sheet_name='選手データ＆チーム分け結果１')
     #1行目削除
-    df = df.drop(df.index[0].reset_index(drop=True)
+    df = df.drop(df.index[0]).reset_index(drop=True)
     #st.subheader
     st.datafream(df.iloc[[0]], use_container_width=True)
     
