@@ -40,11 +40,14 @@ if uploaded_file is not None:
     st.dataframe(df, use_container_width=True)
 
     st.write("列順（変更前）：",df.columns.tolist())  
+
+    excel_col_index = 13
+    df_col_index = excel_col_index - 1
       
-    if len(df.columns) > 13:
+    if len(df.columns) > df_col_index:
         new_cols = df.columns.tolist()
-        target = new_cols.pop(13)
-        new_cols.insert(3, target)
+        col14 = new_cols.pop(df_col_index)
+        new_cols.insert(3, col14)
         df = df[new_cols]
 
     st.write("列順（変更後）：",df.columns.tolist())
