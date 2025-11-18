@@ -47,7 +47,7 @@ if uploaded_file is not None:
         new_cols.insert(3, target)
         df = df[new_cols]
 
-      st.write("列順（変更後）：",df.columns.tolist())
+    st.write("列順（変更後）：",df.columns.tolist())
     
     
 
