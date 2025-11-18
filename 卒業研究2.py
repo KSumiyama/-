@@ -47,7 +47,7 @@ if uploaded_file is not None:
     if len(df.columns) > df_col_index:
         new_cols = df.columns.tolist()
         col14 = new_cols.pop(df_col_index)
-        new_cols.insert(3, col14)
+        new_cols.insert(2, col14)
         df = df[new_cols]
 
     st.write("列順（変更後）：",df.columns.tolist())
