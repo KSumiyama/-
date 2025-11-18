@@ -39,11 +39,18 @@ if uploaded_file is not None:
     df = df.drop(columns=df.columns[0])
     st.dataframe(df, use_container_width=True)
 
-    cols = df.columns.tolist()
-    col_to_move = cols.pop(13)
-    cols.insert(3, col_to_move)
+    st.write("列順（変更前）：",df.columns.tolist())  
+      
+    if len(df.columns) > 13:
+        new_cols = df.columns.tolist()
+        target = new_cols.pop(13)
+        new_cols.insert(3, target)
+        df = df[new_cols]
 
-    df = df[cols]
+      st.write("列順（変更後）：,df.columns.tolist())"
+    
+    
+
     
     st.subheader("アップロードされたデータ")
     st.dataframe(df.head(28), use_container_width=True)
