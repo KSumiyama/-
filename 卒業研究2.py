@@ -37,7 +37,7 @@ if uploaded_file is not None:
     #1行目削除
     df = df.drop(df.index[0]).reset_index(drop=True)
     #st.subheader
-    st.datafream(df.iloc[[0]], use_container_width=True)
+    st.dataframe(df.iloc[[0]], use_container_width=True)
     
     st.subheader("アップロードされたデータ")
     st.dataframe(df.head(29), use_container_width=True)
