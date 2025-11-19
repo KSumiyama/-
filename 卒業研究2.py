@@ -55,7 +55,7 @@ if uploaded_file is not None:
 
     if len(df.columns) > df_col_index_2:
         new_cols_2 = df.columns.tolist()
-        col13 = new_cols_2.pop(df_col_index2)
+        col13 = new_cols_2.pop(df_col_index_2)
         new_cols_2.insert(3, col13)
         df = df[new_cols_2]
 
