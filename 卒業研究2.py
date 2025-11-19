@@ -50,7 +50,7 @@ if uploaded_file is not None:
         new_cols.insert(2, col14)
         df = df[new_cols]
 
-    excel_col_index_2 = 12
+    excel_col_index_2 = 13
     df_col_index_2 = excel_col_index_2 - 1
 
     if len(df.columns) > df_col_index_2:
