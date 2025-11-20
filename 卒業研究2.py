@@ -66,6 +66,12 @@ if uploaded_file is not None:
     
     st.subheader("アップロードされたデータ")
     st.dataframe(df.head(27), use_container_width=True)
+
+    df_14_after = df.iloc[:,13:].copy()
+
+    st.subheader("過去紅白戦のチーム分け結果")
+    st.dataframe(df_14_after, use_container_width=True)
+    
     sheet = book[name]
   except Exception as e:
     st.error(f"読み込み中にエラーが発生しました:{e}")
