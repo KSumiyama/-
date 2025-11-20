@@ -37,6 +37,7 @@ if uploaded_file is not None:
     #先頭行、先頭列削除
     df = df.drop(0).reset_index(drop=True)
     df = df.drop(columns=df.columns[0])
+    
     st.dataframe(df, use_container_width=True)
 
     #st.write("列順（変更前）：",df.columns.tolist())  
@@ -62,12 +63,11 @@ if uploaded_file is not None:
     #st.write("列順（変更後）：",df.columns.tolist())
     
     
-
+    df_14_after = df.iloc[:,13:].copy()
+    df = df.iloc[:,:13].copy()
     
     st.subheader("アップロードされたデータ")
     st.dataframe(df.head(27), use_container_width=True)
-
-    df_14_after = df.iloc[:,13:].copy()
 
     st.subheader("過去紅白戦のチーム分け結果")
     st.dataframe(df_14_after.head(27), use_container_width=True)
