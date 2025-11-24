@@ -62,14 +62,19 @@ if uploaded_file is not None:
 
     #st.write("列順（変更後）：",df.columns.tolist())
     
-    
+
+      
     st.subheader("アップロードされたデータ")
+
+    df = df.dropna(subset=[df.columns[1]])
+      
     st.dataframe(df.iloc[:,:13].head(28), use_container_width=True)
 
     first_col = df.iloc[:,0].copy()
     df_14_after = df.iloc[:,13:]
     df_combined = pd.concat([first_col, df_14_after], axis=1)
-      
+
+    df_combined = df_combined.dropna(subset=[df_combined.columns[0]])
 
     st.subheader("過去紅白戦のチーム分け結果")
     st.dataframe(df_combined.head(27), use_container_width=True)
