@@ -350,7 +350,7 @@ if uploaded_file is not None:
 
             mask_2 = df_result.iloc[:,7].apply(is_number)
             cols_2 = [df_result.columns[1]] + list(df_result.columns[7:12])
-            table_2 = df_result.loc[mask_2, col_2]
+            table_2 = df_result.loc[mask_2, cols_2]
 
             st.subheader("チーム１に属する選手")
             st.dataframe(table_1, use_container_width=True)
@@ -399,7 +399,7 @@ if uploaded_file is not None:
 
             mask_2 = df_result.iloc[:,7].apply(is_number)
             cols_2 = [df_result.columns[1]] + list(df_result.columns[7:12])
-            table_2 = df_result.loc[mask_2, col_2]
+            table_2 = df_result.loc[mask_2, cols_2]
 
             st.subheader("チーム１に属する選手")
             st.dataframe(table_1, use_container_width=True)
@@ -503,7 +503,7 @@ if uploaded_file is not None:
 
             mask_2 = df_result.iloc[:,7].apply(is_number)
             cols_2 = [df_result.columns[1]] + list(df_result.columns[7:12])
-            table_2 = df_result.loc[mask_2, col_2]
+            table_2 = df_result.loc[mask_2, cols_2]
 
             st.subheader("チーム１に属する選手")
             st.dataframe(table_1, use_container_width=True)
@@ -553,7 +553,7 @@ if uploaded_file is not None:
 
             mask_2 = df_result.iloc[:,7].apply(is_number)
             cols_2 = [df_result.columns[1]] + list(df_result.columns[7:12])
-            table_2 = df_result.loc[mask_2, col_2]
+            table_2 = df_result.loc[mask_2, cols_2]
 
             st.subheader("チーム１に属する選手")
             st.dataframe(table_1, use_container_width=True)
