@@ -64,7 +64,7 @@ if uploaded_file is not None:
     
     
     st.subheader("アップロードされたデータ")
-    st.dataframe(df.iloc[:,:13].head(27), use_container_width=True)
+    st.dataframe(df.iloc[:,:13].head(28), use_container_width=True)
 
     first_col = df.iloc[:,0].copy()
     df_14_after = df.iloc[:,13:]
