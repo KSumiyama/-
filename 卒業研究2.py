@@ -63,10 +63,8 @@ if uploaded_file is not None:
     #st.write("列順（変更後）：",df.columns.tolist())
     
     
-    df = df.iloc[:,:13].copy()
-    
     st.subheader("アップロードされたデータ")
-    st.dataframe(df.head(27), use_container_width=True)
+    st.dataframe(df.iloc[:,:13].head(27), use_container_width=True)
 
     first_col = df.iloc[:,0].copy()
     df_14_after = df.iloc[:,13:]
