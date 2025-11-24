@@ -577,6 +577,14 @@ if uploaded_file is not None:
                 except:
                     return False
 
+            second_row = df_result.iloc[[0]]
+
+
+            if len(df_result) > 27:
+                row_28 = df_result.iloc[[27]]
+            else:
+                row_28 = pd.DataFrame(columns=df_result.columns)
+                
             mask_1 = df_result.iloc[:, 2].apply(is_number)
             cols_1 = [df_result.columns[0]] + list(df_result.columns[1:6])
             table_1 = df_result.loc[mask_1, cols_1]
@@ -585,13 +593,12 @@ if uploaded_file is not None:
             cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
             table_2 = df_result.loc[mask_2, cols_2]
 
-            second_row = df_result.iloc[[0]]
-
+            
             #row_28 = df_result.iloc[[27], cols_1]
 
-            table_1_with_second = pd.concat([second_row[cols_1], table_1], ignore_index=True)
+            table_1_with_second = pd.concat([second_row[cols_1], table_1, row_28[cols_1]], ignore_index=True)
 
-            table_2_with_second = pd.concat([second_row[cols_2], table_2], ignore_index=True)
+            table_2_with_second = pd.concat([second_row[cols_2], table_2, row_28[cols_2]], ignore_index=True)
 
             st.subheader("チーム１に属する選手")
             st.dataframe(table_1_with_second, use_container_width=True)
