@@ -420,7 +420,9 @@ if uploaded_file is not None:
             table_2_with_second = pd.concat([second_row[cols_2], table_2], ignore_index=True)
             st.subheader("チーム１に属する選手")
             st.dataframe(table_1_with_second, use_container_width=True)
+            st.write(df_result.iloc[27, :11])
             st.write(type(df_result.iloc[27,1]))
+            st.write(is_number(df_result.iloc[27,1]))
 
             st.subheader("チーム２に属する選手")
             st.dataframe(table_2_with_second, use_container_width=True)
