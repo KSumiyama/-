@@ -269,7 +269,7 @@ if uploaded_file is not None:
               if (i,j,t) in x and x[(i,j,t)].varValue >= 0.99:
                 sheet = book[name]
                 sheet.cell(row=2+i,column=15+n_count).value = t
-                sheet.cell(row=2,column=15+n_count).value = n_count+1
+                sheet.cell(row=2,column=15+n_count).value = f"{n_count+1}回目"
                 sheet = book['チーム分け結果詳細']
                 sheet.cell(row=2+i,column=2+(5*t-4)).value = 1
                 sheet.cell(row=2+i,column=3+(5*t-4)).value = j
