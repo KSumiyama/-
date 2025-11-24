@@ -38,7 +38,7 @@ if uploaded_file is not None:
     df = df.drop(0).reset_index(drop=True)
     df = df.drop(columns=df.columns[0])
     
-    st.dataframe(df, use_container_width=True)
+    #st.dataframe(df, use_container_width=True)
 
     #st.write("列順（変更前）：",df.columns.tolist())  
 
