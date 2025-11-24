@@ -74,7 +74,7 @@ if uploaded_file is not None:
     df_14_after = df.iloc[:,13:]
     df_combined = pd.concat([first_col, df_14_after], axis=1)
 
-    df_combined = df_combined.dropna(subset=[df_combined.columns[0]])
+    df_combined = df_combined.dropna(subset=[df_combined.columns[1]])
 
     st.subheader("過去紅白戦のチーム分け結果")
     st.dataframe(df_combined.head(27), use_container_width=True)
