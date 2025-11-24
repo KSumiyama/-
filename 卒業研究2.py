@@ -68,7 +68,7 @@ if uploaded_file is not None:
     st.subheader("アップロードされたデータ")
     st.dataframe(df.head(27), use_container_width=True)
 
-    first_col = df.iloc[:,1].copy()
+    first_col = df.iloc[:,0].copy()
     df_14_after = df.iloc[:,13:]
     df_combined = pd.concat([first_col, df_14_after], axis=1)
       
