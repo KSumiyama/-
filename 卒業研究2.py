@@ -352,7 +352,7 @@ if uploaded_file is not None:
             cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
             table_2 = df_result.loc[mask_2, cols_2]
 
-            second_row = df_result.iloc[[1]]
+            second_row = df_result.iloc[[0]]
 
             table_1_with_second = pd.concat([second_row, table_1], ignore_index=True)
 
@@ -407,7 +407,7 @@ if uploaded_file is not None:
             cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
             table_2 = df_result.loc[mask_2, cols_2]
 
-            second_row = df_result.iloc[[1]]
+            second_row = df_result.iloc[[0]]
 
             table_1_with_second = pd.concat([second_row, table_1], ignore_index=True)
 
@@ -517,7 +517,7 @@ if uploaded_file is not None:
             cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
             table_2 = df_result.loc[mask_2, cols_2]
 
-            second_row = df_result.iloc[[1]]
+            second_row = df_result.iloc[[0]]
 
             table_1_with_second = pd.concat([second_row, table_1], ignore_index=True)
 
@@ -573,7 +573,7 @@ if uploaded_file is not None:
             cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
             table_2 = df_result.loc[mask_2, cols_2]
 
-            second_row = df_result.iloc[[1]]
+            second_row = df_result.iloc[[0]]
 
             table_1_with_second = pd.concat([second_row, table_1], ignore_index=True)
 
