@@ -88,7 +88,7 @@ if uploaded_file is not None:
     with st.spinner("最適化中...少々お待ちください"):
       main_file = '紅白戦02.xlsx'
       sub_file = '紅白戦.xlsx'
-      name = '選手データ＆チーム分け結果１'
+      #name = '選手データ＆チーム分け結果１'
 
       yomikomi=0
   #2回目以降のファイル読み込み
