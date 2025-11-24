@@ -285,6 +285,7 @@ if uploaded_file is not None:
             sheet.cell(row=2+i, column=15+n_count).value = 0
 
         save_filename = f"紅白戦{n_count}.xlsx"
+        wb.calculation_properties.fullCalcOnLoad = True
         book.save(save_filename)
 
         if yomikomi == 2:
@@ -378,6 +379,7 @@ if uploaded_file is not None:
             sheet.cell(row=2+i, column=15+n_count).value = 0
         
         save_filename = f"紅白戦02.xlsx"
+        wb.calculation_properties.fullCalcOnLoad = True
         book.save(save_filename)
 
         if yomikomi == 2:
