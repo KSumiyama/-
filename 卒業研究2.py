@@ -288,14 +288,14 @@ if uploaded_file is not None:
                 sheet.cell(row=2+i,column=3+(5*t-4)).value = j
                 sheet.cell(row=2+i,column=4+(5*t-4)).value = P[(i,j)]
                 if t==1:
-                    p1 += 1
+                    p1 += P[(i,j)]
                 elif t==2:
-                    p2 += 1
+                    p2 += P[(i,j)]
                 sheet.cell(row=2+i,column=5+(5*t-4)).value = B[(i)]
                 if t==1:
-                    b1 += 1
+                    b1 += B[(i)]
                 elif t==2:
-                    b2 += 1
+                    b2 += B[(i)]
                 sheet.cell(row=2+i,column=6+(5*t-4)).value = P[(i,j)]+B[(i)]
         
         sheet.cell(row=29,column=3).value = t1
@@ -396,11 +396,23 @@ if uploaded_file is not None:
                 sheet.cell(row=2, column=15+n_count).value = n_count+1
                 sheet = book['チーム分け結果詳細']
                 sheet.cell(row=2+i,column=2+(5*t-4)).value = 1
+                if t==1:
+                    t1 += 1
+                elif t==2:
+                    t2 += 1
                 sheet.cell(row=2+i,column=3+(5*t-4)).value = j
                 sheet.cell(row=2+i,column=4+(5*t-4)).value = P[(i,j)]
+                if t==1:
+                    p1 += P[(i,j)]
+                elif t==2:
+                    p2 += P[(i,j)]
                 sheet.cell(row=2+i,column=5+(5*t-4)).value = B[(i)]
+                if t==1:
+                    b1 += B[(i)]
+                elif t==2:
+                    b2 += B[(i)]
                 sheet.cell(row=2+i,column=6+(5*t-4)).value = P[(i,j)]+B[(i)]
-
+        
         sheet.cell(row=29,column=3).value = t1
         sheet.cell(row=29,column=5).value = p1
         sheet.cell(row=29,column=6).value = b1
