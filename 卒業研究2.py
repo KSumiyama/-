@@ -346,7 +346,7 @@ if uploaded_file is not None:
                     return False
 
             mask_1 = df_result.iloc[:, 2].apply(is number)
-            table_1 = df_result.loc[mask_1, df_result.columns[7:12])
+            table_1 = df_result.loc[mask_1, df_result.columns[1:7]]
 
             masc_2 = df_result.iloc[:,7].apply(is number)
             cols_2 = [df_result.columns[1]] + list(df_result.columns[7:12])
@@ -387,7 +387,26 @@ if uploaded_file is not None:
             df_result = df_result.drop(index=0).reset_index(drop=True)
             df_result = df_result.drop(columns=df_result.columns[0])
             st.subheader("最適化結果（チーム分け結果）")
-            st.dataframe(df_result, use_container_width=True)
+            def is_number(x):
+                try:
+                    float(x)
+                    return True
+                except:
+                    return False
+
+            mask_1 = df_result.iloc[:, 2].apply(is number)
+            table_1 = df_result.loc[mask_1, df_result.columns[1:7]]
+
+            masc_2 = df_result.iloc[:,7].apply(is number)
+            cols_2 = [df_result.columns[1]] + list(df_result.columns[7:12])
+            table_2 = df_result.loc[mask_2, col_2]
+
+            st.subheader("チーム１に属する選手")
+            st.dataframe(table_1, use_container_width=True)
+
+            st.subheader("チーム２に属する選手")
+            st.dataframe(table_2, use_container_width=True)
+
 
             file_name = "紅白戦02.xlsx"
 
@@ -472,7 +491,26 @@ if uploaded_file is not None:
             df_result = df_result.drop(index=0).reset_index(drop=True)
             df_result = df_result.drop(columns=df_result.columns[0])
             st.subheader("最適化結果（チーム分け結果）")
-            st.dataframe(df_result, use_container_width=True)
+            def is_number(x):
+                try:
+                    float(x)
+                    return True
+                except:
+                    return False
+
+            mask_1 = df_result.iloc[:, 2].apply(is number)
+            table_1 = df_result.loc[mask_1, df_result.columns[1:7]]
+
+            masc_2 = df_result.iloc[:,7].apply(is number)
+            cols_2 = [df_result.columns[1]] + list(df_result.columns[7:12])
+            table_2 = df_result.loc[mask_2, col_2]
+
+            st.subheader("チーム１に属する選手")
+            st.dataframe(table_1, use_container_width=True)
+
+            st.subheader("チーム２に属する選手")
+            st.dataframe(table_2, use_container_width=True)
+
 
             file_name = "紅白戦02.xlsx"
 
@@ -503,7 +541,26 @@ if uploaded_file is not None:
             df_result = df_result.drop(index=0).reset_index(drop=True)
             df_result = df_result.drop(columns=df_result.columns[0])
             st.subheader("最適化結果（チーム分け結果）")
-            st.dataframe(df_result, use_container_width=True)
+            def is_number(x):
+                try:
+                    float(x)
+                    return True
+                except:
+                    return False
+
+            mask_1 = df_result.iloc[:, 2].apply(is number)
+            table_1 = df_result.loc[mask_1, df_result.columns[1:7]]
+
+            masc_2 = df_result.iloc[:,7].apply(is number)
+            cols_2 = [df_result.columns[1]] + list(df_result.columns[7:12])
+            table_2 = df_result.loc[mask_2, col_2]
+
+            st.subheader("チーム１に属する選手")
+            st.dataframe(table_1, use_container_width=True)
+
+            st.subheader("チーム２に属する選手")
+            st.dataframe(table_2, use_container_width=True)
+
 
             file_name = "紅白戦02.xlsx"
 
