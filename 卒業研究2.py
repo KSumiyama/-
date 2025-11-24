@@ -323,7 +323,7 @@ if uploaded_file is not None:
             output_stream.seek(0)
 
             try:
-                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細',header=None)
+                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細')
             except Exception as e:
                 st.error(f"結果読み込み中にエラーが発生しました：{e}")
                 st.download_button(
@@ -334,7 +334,7 @@ if uploaded_file is not None:
                 )
                 st.stop()
 
-            #df_result = df_result.drop(index=0).reset_index(drop=True)
+            df_result = df_result.drop(index=0).reset_index(drop=True)
             df_result = df_result.drop(columns=df_result.columns[0])
             st.subheader("最適化結果（チーム分け結果）")
 
@@ -373,7 +373,7 @@ if uploaded_file is not None:
             output_stream.seek(0)
 
             try:
-                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細',header=None)
+                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細')
             except Exception as e:
                 st.error(f"結果読み込み中にエラーが発生しました：{e}")
                 st.download_button(
@@ -384,7 +384,7 @@ if uploaded_file is not None:
                 )
                 st.stop()
 
-            #df_result = df_result.drop(index=0).reset_index(drop=True)
+            df_result = df_result.drop(index=0).reset_index(drop=True)
             df_result = df_result.drop(columns=df_result.columns[0])
             st.subheader("最適化結果（チーム分け結果）")
             def is_number(x):
@@ -476,7 +476,7 @@ if uploaded_file is not None:
             output_stream.seek(0)
 
             try:
-                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細',header=None)
+                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細')
             except Exception as e:
                 st.error(f"結果読み込み中にエラーが発生しました：{e}")
                 st.download_button(
@@ -488,7 +488,7 @@ if uploaded_file is not None:
                 st.stop()
 
 
-            #df_result = df_result.drop(index=0).reset_index(drop=True)
+            df_result = df_result.drop(index=0).reset_index(drop=True)
             df_result = df_result.drop(columns=df_result.columns[0])
             st.subheader("最適化結果（チーム分け結果）")
             def is_number(x):
@@ -527,7 +527,7 @@ if uploaded_file is not None:
             output_stream.seek(0)
 
             try:
-                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細', header=None)
+                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細')
             except Exception as e:
                 st.error(f"結果読み込み中にエラーが発生しました：{e}")
                 st.download_button(
@@ -538,7 +538,7 @@ if uploaded_file is not None:
                 )
                 st.stop()
 
-            #df_result = df_result.drop(index=0).reset_index(drop=True)
+            df_result = df_result.drop(index=0).reset_index(drop=True)
             df_result = df_result.drop(columns=df_result.columns[0])
             st.subheader("最適化結果（チーム分け結果）")
             def is_number(x):
