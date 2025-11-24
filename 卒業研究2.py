@@ -345,10 +345,10 @@ if uploaded_file is not None:
                 except:
                     return False
 
-            mask_1 = df_result.iloc[:, 2].apply(is number)
+            mask_1 = df_result.iloc[:, 2].apply(is_number)
             table_1 = df_result.loc[mask_1, df_result.columns[1:7]]
 
-            masc_2 = df_result.iloc[:,7].apply(is number)
+            masc_2 = df_result.iloc[:,7].apply(is_number)
             cols_2 = [df_result.columns[1]] + list(df_result.columns[7:12])
             table_2 = df_result.loc[mask_2, col_2]
 
@@ -394,10 +394,10 @@ if uploaded_file is not None:
                 except:
                     return False
 
-            mask_1 = df_result.iloc[:, 2].apply(is number)
+            mask_1 = df_result.iloc[:, 2].apply(is_number)
             table_1 = df_result.loc[mask_1, df_result.columns[1:7]]
 
-            masc_2 = df_result.iloc[:,7].apply(is number)
+            masc_2 = df_result.iloc[:,7].apply(is_number)
             cols_2 = [df_result.columns[1]] + list(df_result.columns[7:12])
             table_2 = df_result.loc[mask_2, col_2]
 
@@ -498,10 +498,10 @@ if uploaded_file is not None:
                 except:
                     return False
 
-            mask_1 = df_result.iloc[:, 2].apply(is number)
+            mask_1 = df_result.iloc[:, 2].apply(is_number)
             table_1 = df_result.loc[mask_1, df_result.columns[1:7]]
 
-            masc_2 = df_result.iloc[:,7].apply(is number)
+            masc_2 = df_result.iloc[:,7].apply(is_number)
             cols_2 = [df_result.columns[1]] + list(df_result.columns[7:12])
             table_2 = df_result.loc[mask_2, col_2]
 
@@ -548,10 +548,10 @@ if uploaded_file is not None:
                 except:
                     return False
 
-            mask_1 = df_result.iloc[:, 2].apply(is number)
+            mask_1 = df_result.iloc[:, 2].apply(is_number)
             table_1 = df_result.loc[mask_1, df_result.columns[1:7]]
 
-            masc_2 = df_result.iloc[:,7].apply(is number)
+            masc_2 = df_result.iloc[:,7].apply(is_number)
             cols_2 = [df_result.columns[1]] + list(df_result.columns[7:12])
             table_2 = df_result.loc[mask_2, col_2]
 
