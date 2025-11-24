@@ -354,9 +354,9 @@ if uploaded_file is not None:
 
             second_row = df_result.iloc[[1]]
 
-            table_1_with_second = pd.concat([second_row, table1], ignore_index=True)
+            table_1_with_second = pd.concat([second_row, table_1], ignore_index=True)
 
-            table_2_with_second = pd.concat([second_row, table2], ignore_index=True)
+            table_2_with_second = pd.concat([second_row, table_2], ignore_index=True)
 
             st.subheader("チーム１に属する選手")
             st.dataframe(table_1_with_second, use_container_width=True)
@@ -409,9 +409,9 @@ if uploaded_file is not None:
 
             second_row = df_result.iloc[[1]]
 
-            table_1_with_second = pd.concat([second_row, table1], ignore_index=True)
+            table_1_with_second = pd.concat([second_row, table_1], ignore_index=True)
 
-            table_2_with_second = pd.concat([second_row, table2], ignore_index=True)
+            table_2_with_second = pd.concat([second_row, table_2], ignore_index=True)
 
             st.subheader("チーム１に属する選手")
             st.dataframe(table_1_with_second, use_container_width=True)
@@ -519,9 +519,9 @@ if uploaded_file is not None:
 
             second_row = df_result.iloc[[1]]
 
-            table_1_with_second = pd.concat([second_row, table1], ignore_index=True)
+            table_1_with_second = pd.concat([second_row, table_1], ignore_index=True)
 
-            table_2_with_second = pd.concat([second_row, table2], ignore_index=True)
+            table_2_with_second = pd.concat([second_row, table_2], ignore_index=True)
 
             st.subheader("チーム１に属する選手")
             st.dataframe(table_1_with_second, use_container_width=True)
@@ -575,9 +575,9 @@ if uploaded_file is not None:
 
             second_row = df_result.iloc[[1]]
 
-            table_1_with_second = pd.concat([second_row, table1], ignore_index=True)
+            table_1_with_second = pd.concat([second_row, table_1], ignore_index=True)
 
-            table_2_with_second = pd.concat([second_row, table2], ignore_index=True)
+            table_2_with_second = pd.concat([second_row, table_2], ignore_index=True)
 
             st.subheader("チーム１に属する選手")
             st.dataframe(table_1_with_second, use_container_width=True)
