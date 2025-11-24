@@ -370,7 +370,7 @@ if uploaded_file is not None:
 
             table_1_with_second_clean = table_1_with_second.dropna(subset=[table_1_with_second.columns[1]])
 
-            table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[6]])
+            table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[1]])
 
 
             st.subheader("チーム１に属する選手")
@@ -440,7 +440,7 @@ if uploaded_file is not None:
             
             table_1_with_second_clean = table_1_with_second.dropna(subset=[table_1_with_second.columns[1]])
 
-            table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[6]])
+            table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[1]])
 
 
             st.subheader("チーム１に属する選手")
@@ -565,7 +565,7 @@ if uploaded_file is not None:
 
             table_1_with_second_clean = table_1_with_second.dropna(subset=[table_1_with_second.columns[1]])
 
-            table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[6]])
+            table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[1]])
 
 
             st.subheader("チーム１に属する選手")
@@ -636,7 +636,7 @@ if uploaded_file is not None:
 
             table_1_with_second_clean = table_1_with_second.dropna(subset=[table_1_with_second.columns[1]])
 
-            table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[6]])
+            table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[1]])
 
 
             st.subheader("チーム１に属する選手")
