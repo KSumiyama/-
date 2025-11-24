@@ -27,7 +27,7 @@ if uploaded_file is not None:
   file_bytes = uploaded_file.read()
   #openpyxlで直接読み込む
   from io import BytesIO
-  wb = load_workbook(filename=BytesIO(file_bytes), data_only=True)
+  wb = load_workbook(filename=BytesIO(file_bytes), data_only=False)
   #ここから「book」変数として扱う
   book=wb
 
