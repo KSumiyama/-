@@ -346,7 +346,8 @@ if uploaded_file is not None:
                     return False
 
             mask_1 = df_result.iloc[:, 2].apply(is_number)
-            table_1 = df_result.loc[mask_1, df_result.columns[0:6]]
+            cols_1 = df_result.columns[0:6]
+            table_1 = df_result.loc[mask_1, cols_1]
 
             mask_2 = df_result.iloc[:, 6].apply(is_number)
             cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
@@ -354,9 +355,9 @@ if uploaded_file is not None:
 
             second_row = df_result.iloc[[0]]
 
-            table_1_with_second = pd.concat([second_row, table_1], ignore_index=True)
+            table_1_with_second = pd.concat([second_row[cols_1], table_1], ignore_index=True)
 
-            table_2_with_second = pd.concat([second_row, table_2], ignore_index=True)
+            table_2_with_second = pd.concat([second_row[cols_2], table_2], ignore_index=True)
 
             st.subheader("チーム１に属する選手")
             st.dataframe(table_1_with_second, use_container_width=True)
@@ -401,7 +402,8 @@ if uploaded_file is not None:
                     return False
 
             mask_1 = df_result.iloc[:, 2].apply(is_number)
-            table_1 = df_result.loc[mask_1, df_result.columns[0:6]]
+            cols_1 = df_result.columns[0:6]
+            table_1 = df_result.loc[mask_1, cols_1]
 
             mask_2 = df_result.iloc[:, 6].apply(is_number)
             cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
@@ -409,10 +411,9 @@ if uploaded_file is not None:
 
             second_row = df_result.iloc[[0]]
 
-            table_1_with_second = pd.concat([second_row, table_1], ignore_index=True)
+            table_1_with_second = pd.concat([second_row[cols_1], table_1], ignore_index=True)
 
-            table_2_with_second = pd.concat([second_row, table_2], ignore_index=True)
-
+            table_2_with_second = pd.concat([second_row[cols_2], table_2], ignore_index=True)
             st.subheader("チーム１に属する選手")
             st.dataframe(table_1_with_second, use_container_width=True)
 
@@ -511,7 +512,8 @@ if uploaded_file is not None:
                     return False
 
             mask_1 = df_result.iloc[:, 2].apply(is_number)
-            table_1 = df_result.loc[mask_1, df_result.columns[0:6]]
+            cols_1 = df_result.columns[0:6]
+            table_1 = df_result.loc[mask_1, cols_1]
 
             mask_2 = df_result.iloc[:, 6].apply(is_number)
             cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
@@ -519,9 +521,9 @@ if uploaded_file is not None:
 
             second_row = df_result.iloc[[0]]
 
-            table_1_with_second = pd.concat([second_row, table_1], ignore_index=True)
+            table_1_with_second = pd.concat([second_row[cols_1], table_1], ignore_index=True)
 
-            table_2_with_second = pd.concat([second_row, table_2], ignore_index=True)
+            table_2_with_second = pd.concat([second_row[cols_2], table_2], ignore_index=True)
 
             st.subheader("チーム１に属する選手")
             st.dataframe(table_1_with_second, use_container_width=True)
@@ -567,7 +569,8 @@ if uploaded_file is not None:
                     return False
 
             mask_1 = df_result.iloc[:, 2].apply(is_number)
-            table_1 = df_result.loc[mask_1, df_result.columns[0:6]]
+            cols_1 = df_result.columns[0:6]
+            table_1 = df_result.loc[mask_1, cols_1]
 
             mask_2 = df_result.iloc[:, 6].apply(is_number)
             cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
@@ -575,9 +578,9 @@ if uploaded_file is not None:
 
             second_row = df_result.iloc[[0]]
 
-            table_1_with_second = pd.concat([second_row, table_1], ignore_index=True)
+            table_1_with_second = pd.concat([second_row[cols_1], table_1], ignore_index=True)
 
-            table_2_with_second = pd.concat([second_row, table_2], ignore_index=True)
+            table_2_with_second = pd.concat([second_row[cols_2], table_2], ignore_index=True)
 
             st.subheader("チーム１に属する選手")
             st.dataframe(table_1_with_second, use_container_width=True)
