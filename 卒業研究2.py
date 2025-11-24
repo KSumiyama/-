@@ -355,7 +355,9 @@ if uploaded_file is not None:
 
             second_row = df_result.iloc[[0]]
 
-            table_1_with_second = pd.concat([second_row[cols_1], table_1], ignore_index=True)
+            row_28 = df_result.iloc[[27], cols_1]
+
+            table_1_with_second = pd.concat([second_row[cols_1], table_1, row_28], ignore_index=True)
 
             table_2_with_second = pd.concat([second_row[cols_2], table_2], ignore_index=True)
 
@@ -411,12 +413,13 @@ if uploaded_file is not None:
 
             second_row = df_result.iloc[[0]]
 
-            table_1_with_second = pd.concat([second_row[cols_1], table_1], ignore_index=True)
+            row_28 = df_result.iloc[[27], cols_1]
 
+            table_1_with_second = pd.concat([second_row[cols_1], table_1, row_28], ignore_index=True)
             table_2_with_second = pd.concat([second_row[cols_2], table_2], ignore_index=True)
             st.subheader("チーム１に属する選手")
             st.dataframe(table_1_with_second, use_container_width=True)
-            st.write(df_result.iloc[27,1])
+            #st.write(df_result.iloc[27,1])
 
             st.subheader("チーム２に属する選手")
             st.dataframe(table_2_with_second, use_container_width=True)
@@ -522,8 +525,9 @@ if uploaded_file is not None:
 
             second_row = df_result.iloc[[0]]
 
-            table_1_with_second = pd.concat([second_row[cols_1], table_1], ignore_index=True)
+            row_28 = df_result.iloc[[27], cols_1]
 
+            table_1_with_second = pd.concat([second_row[cols_1], table_1, row_28], ignore_index=True)
             table_2_with_second = pd.concat([second_row[cols_2], table_2], ignore_index=True)
 
             st.subheader("チーム１に属する選手")
@@ -579,7 +583,9 @@ if uploaded_file is not None:
 
             second_row = df_result.iloc[[0]]
 
-            table_1_with_second = pd.concat([second_row[cols_1], table_1], ignore_index=True)
+            row_28 = df_result.iloc[[27], cols_1]
+
+            table_1_with_second = pd.concat([second_row[cols_1], table_1, row_28], ignore_index=True)
 
             table_2_with_second = pd.concat([second_row[cols_2], table_2], ignore_index=True)
 
