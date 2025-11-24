@@ -263,6 +263,13 @@ if uploaded_file is not None:
 
 #エクセル出力
 
+
+      t1=0
+      t2=0
+      p1=0
+      p2=0
+      b1=0
+      b2=0
       if pulp.LpStatus[status] == 'Optimal':
         st.write("結果をExselに書き込みます...")
         for i in range(1,reg+1):
@@ -274,18 +281,39 @@ if uploaded_file is not None:
                 sheet.cell(row=2,column=15+n_count).value = f"{n_count+1}回目"
                 sheet = book['チーム分け結果詳細']
                 sheet.cell(row=2+i,column=2+(5*t-4)).value = 1
+                if t==1:
+                    t1 += 1
+                elif t==2:
+                    t2 += 1
                 sheet.cell(row=2+i,column=3+(5*t-4)).value = j
                 sheet.cell(row=2+i,column=4+(5*t-4)).value = P[(i,j)]
+                if t==1:
+                    p1 += 1
+                elif t==2:
+                    p2 += 1
                 sheet.cell(row=2+i,column=5+(5*t-4)).value = B[(i)]
+                if t==1:
+                    b1 += 1
+                elif t==2:
+                    b2 += 1
                 sheet.cell(row=2+i,column=6+(5*t-4)).value = P[(i,j)]+B[(i)]
-
+        
+        sheet.cell(row=29,column=3).value = t1
+        sheet.cell(row=29,column=5).value = p1
+        sheet.cell(row=29,column=6).value = b1
+        sheet.cell(row=29,column=7).value = p1+b1
+        sheet.cell(row=29,column=8).value = t2
+        sheet.cell(row=29,column=10).value = p2
+        sheet.cell(row=29,column=11).value = b2
+        sheet.cell(row=29,column=12).value = p2+b2
+          
         sheet = book[name]
         for i in range(1,reg+1):
           if sheet.cell(row=2+i, column=15+n_count).value is None:
             sheet.cell(row=2+i, column=15+n_count).value = 0
 
         save_filename = f"紅白戦{n_count}.xlsx"
-        wb.calculation_properties.fullCalcOnLoad = True
+        #wb.calculation_properties.fullCalcOnLoad = True
         book.save(save_filename)
 
         if yomikomi == 2:
@@ -373,13 +401,22 @@ if uploaded_file is not None:
                 sheet.cell(row=2+i,column=5+(5*t-4)).value = B[(i)]
                 sheet.cell(row=2+i,column=6+(5*t-4)).value = P[(i,j)]+B[(i)]
 
+        sheet.cell(row=29,column=3).value = t1
+        sheet.cell(row=29,column=5).value = p1
+        sheet.cell(row=29,column=6).value = b1
+        sheet.cell(row=29,column=7).value = p1+b1
+        sheet.cell(row=29,column=8).value = t2
+        sheet.cell(row=29,column=10).value = p2
+        sheet.cell(row=29,column=11).value = b2
+        sheet.cell(row=29,column=12).value = p2+b2
+
         sheet = book[name]
         for i in range(1,reg+1):
           if sheet.cell(row=2+i, column=15+n_count).value is None:
             sheet.cell(row=2+i, column=15+n_count).value = 0
         
         save_filename = f"紅白戦02.xlsx"
-        wb.calculation_properties.fullCalcOnLoad = True
+        #wb.calculation_properties.fullCalcOnLoad = True
         book.save(save_filename)
 
         if yomikomi == 2:
