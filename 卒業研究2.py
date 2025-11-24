@@ -346,10 +346,10 @@ if uploaded_file is not None:
                     return False
 
             mask_1 = df_result.iloc[:, 2].apply(is_number)
-            table_1 = df_result.loc[mask_1, df_result.columns[1:7]]
+            table_1 = df_result.loc[mask_1, df_result.columns[0:6]]
 
-            mask_2 = df_result.iloc[:,7].apply(is_number)
-            cols_2 = [df_result.columns[1]] + list(df_result.columns[7:12])
+            mask_2 = df_result.iloc[:, 6].apply(is_number)
+            cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
             table_2 = df_result.loc[mask_2, cols_2]
 
             st.subheader("チーム１に属する選手")
@@ -395,10 +395,10 @@ if uploaded_file is not None:
                     return False
 
             mask_1 = df_result.iloc[:, 2].apply(is_number)
-            table_1 = df_result.loc[mask_1, df_result.columns[1:7]]
+            table_1 = df_result.loc[mask_1, df_result.columns[0:6]]
 
-            mask_2 = df_result.iloc[:,7].apply(is_number)
-            cols_2 = [df_result.columns[1]] + list(df_result.columns[7:12])
+            mask_2 = df_result.iloc[:, 6].apply(is_number)
+            cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
             table_2 = df_result.loc[mask_2, cols_2]
 
             st.subheader("チーム１に属する選手")
@@ -499,10 +499,10 @@ if uploaded_file is not None:
                     return False
 
             mask_1 = df_result.iloc[:, 2].apply(is_number)
-            table_1 = df_result.loc[mask_1, df_result.columns[1:7]]
+            table_1 = df_result.loc[mask_1, df_result.columns[0:6]]
 
-            mask_2 = df_result.iloc[:,7].apply(is_number)
-            cols_2 = [df_result.columns[1]] + list(df_result.columns[7:12])
+            mask_2 = df_result.iloc[:, 6].apply(is_number)
+            cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
             table_2 = df_result.loc[mask_2, cols_2]
 
             st.subheader("チーム１に属する選手")
@@ -549,10 +549,10 @@ if uploaded_file is not None:
                     return False
 
             mask_1 = df_result.iloc[:, 2].apply(is_number)
-            table_1 = df_result.loc[mask_1, df_result.columns[1:7]]
+            table_1 = df_result.loc[mask_1, df_result.columns[0:6]]
 
-            mask_2 = df_result.iloc[:,7].apply(is_number)
-            cols_2 = [df_result.columns[1]] + list(df_result.columns[7:12])
+            mask_2 = df_result.iloc[:, 6].apply(is_number)
+            cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
             table_2 = df_result.loc[mask_2, cols_2]
 
             st.subheader("チーム１に属する選手")
