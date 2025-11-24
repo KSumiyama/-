@@ -352,11 +352,17 @@ if uploaded_file is not None:
             cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
             table_2 = df_result.loc[mask_2, cols_2]
 
+            second_row = df_result.iloc[[1]]
+
+            table_1_with_second = pd.concat([second_row, table1], ignore_index=True)
+
+            table_2_with_second = pd.concat([second_row, table2], ignore_index=True)
+
             st.subheader("チーム１に属する選手")
-            st.dataframe(table_1, use_container_width=True)
+            st.dataframe(table_1_with_second, use_container_width=True)
 
             st.subheader("チーム２に属する選手")
-            st.dataframe(table_2, use_container_width=True)
+            st.dataframe(table_2_with_second, use_container_width=True)
 
             file_name = "紅白戦02.xlsx"
 
@@ -401,11 +407,17 @@ if uploaded_file is not None:
             cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
             table_2 = df_result.loc[mask_2, cols_2]
 
+            second_row = df_result.iloc[[1]]
+
+            table_1_with_second = pd.concat([second_row, table1], ignore_index=True)
+
+            table_2_with_second = pd.concat([second_row, table2], ignore_index=True)
+
             st.subheader("チーム１に属する選手")
-            st.dataframe(table_1, use_container_width=True)
+            st.dataframe(table_1_with_second, use_container_width=True)
 
             st.subheader("チーム２に属する選手")
-            st.dataframe(table_2, use_container_width=True)
+            st.dataframe(table_2_with_second, use_container_width=True)
 
 
             file_name = "紅白戦02.xlsx"
@@ -505,11 +517,17 @@ if uploaded_file is not None:
             cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
             table_2 = df_result.loc[mask_2, cols_2]
 
+            second_row = df_result.iloc[[1]]
+
+            table_1_with_second = pd.concat([second_row, table1], ignore_index=True)
+
+            table_2_with_second = pd.concat([second_row, table2], ignore_index=True)
+
             st.subheader("チーム１に属する選手")
-            st.dataframe(table_1, use_container_width=True)
+            st.dataframe(table_1_with_second, use_container_width=True)
 
             st.subheader("チーム２に属する選手")
-            st.dataframe(table_2, use_container_width=True)
+            st.dataframe(table_2_with_second, use_container_width=True)
 
 
             file_name = "紅白戦02.xlsx"
@@ -555,11 +573,17 @@ if uploaded_file is not None:
             cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
             table_2 = df_result.loc[mask_2, cols_2]
 
+            second_row = df_result.iloc[[1]]
+
+            table_1_with_second = pd.concat([second_row, table1], ignore_index=True)
+
+            table_2_with_second = pd.concat([second_row, table2], ignore_index=True)
+
             st.subheader("チーム１に属する選手")
-            st.dataframe(table_1, use_container_width=True)
+            st.dataframe(table_1_with_second, use_container_width=True)
 
             st.subheader("チーム２に属する選手")
-            st.dataframe(table_2, use_container_width=True)
+            st.dataframe(table_2_with_second, use_container_width=True)
 
 
             file_name = "紅白戦02.xlsx"
