@@ -445,7 +445,7 @@ if uploaded_file is not None:
             table_1_with_second = pd.concat(table_1, row_27[cols_1], ignore_index=True)
 
             #table_2_with_second = pd.concat([second_row[cols_2], table_2], ignore_index=True)
-            table_2_with_second = pd.concat(table_2], ignore_index=True)
+            table_2_with_second = pd.concat(table_2, ignore_index=True)
             
             table_1_with_second_clean = table_1_with_second.dropna(subset=[table_1_with_second.columns[1]])
 
