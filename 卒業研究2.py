@@ -35,7 +35,7 @@ if uploaded_file is not None:
   try:
     df = pd.read_excel(BytesIO(file_bytes), sheet_name=name, header=1)
     #先頭行、先頭列削除
-    df = df.drop(0).reset_index(drop=True)
+    #df = df.drop(0).reset_index(drop=True)
     df = df.drop(columns=df.columns[0])
     
     #st.dataframe(df, use_container_width=True)
