@@ -19,7 +19,7 @@ import streamlit as st
 import pandas as pd
 from io import BytesIO
 
-st.title("野球　紅白戦　チーム分けWEBアプリ")
+st.title("野球紅白戦　チーム分けWEBアプリ")
 
 uploaded_file = st.file_uploader("Excelファイルをアップロードしてください　(.xlsx)", type="xlsx")
 if uploaded_file is not None:
