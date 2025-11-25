@@ -31,7 +31,7 @@ if uploaded_file is not None:
   #ここから「book」変数として扱う
   book=wb
 
-  name = '選手データ＆チーム分け結果２'
+  name = '選手データ＆チーム分け結果１'
   try:
     df = pd.read_excel(BytesIO(file_bytes), sheet_name=name, header=None)
     #先頭行、先頭列削除
@@ -359,11 +359,11 @@ if uploaded_file is not None:
                 row_28 = pd.DataFrame(columns=df_result.columns)
                 
             mask_1 = df_result.iloc[:, 2].apply(is_number)
-            cols_1 = [df_result.columns[0]] + list(df_result.columns[1:6])
+            cols_1 = [df_result.columns[0]] + list(df_result.columns[2:6])
             table_1 = df_result.loc[mask_1, cols_1]
 
             mask_2 = df_result.iloc[:, 6].apply(is_number)
-            cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
+            cols_2 = [df_result.columns[0]] + list(df_result.columns[7:11])
             table_2 = df_result.loc[mask_2, cols_2]
 
             
@@ -429,11 +429,11 @@ if uploaded_file is not None:
                 row_28 = pd.DataFrame(columns=df_result.columns)
                 
             mask_1 = df_result.iloc[:, 2].apply(is_number)
-            cols_1 = [df_result.columns[0]] + list(df_result.columns[1:6])
+            cols_1 = [df_result.columns[0]] + list(df_result.columns[2:6])
             table_1 = df_result.loc[mask_1, cols_1]
 
             mask_2 = df_result.iloc[:, 6].apply(is_number)
-            cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
+            cols_2 = [df_result.columns[0]] + list(df_result.columns[7:11])
             table_2 = df_result.loc[mask_2, cols_2]
 
             
@@ -554,11 +554,11 @@ if uploaded_file is not None:
                 row_28 = pd.DataFrame(columns=df_result.columns)
                 
             mask_1 = df_result.iloc[:, 2].apply(is_number)
-            cols_1 = [df_result.columns[0]] + list(df_result.columns[1:6])
+            cols_1 = [df_result.columns[0]] + list(df_result.columns[2:6])
             table_1 = df_result.loc[mask_1, cols_1]
 
             mask_2 = df_result.iloc[:, 6].apply(is_number)
-            cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
+            cols_2 = [df_result.columns[0]] + list(df_result.columns[7:11])
             table_2 = df_result.loc[mask_2, cols_2]
 
             
@@ -624,11 +624,11 @@ if uploaded_file is not None:
                 row_28 = pd.DataFrame(columns=df_result.columns)
                 
             mask_1 = df_result.iloc[:, 2].apply(is_number)
-            cols_1 = [df_result.columns[0]] + list(df_result.columns[1:6])
+            cols_1 = [df_result.columns[0]] + list(df_result.columns[2:6])
             table_1 = df_result.loc[mask_1, cols_1]
 
             mask_2 = df_result.iloc[:, 6].apply(is_number)
-            cols_2 = [df_result.columns[0]] + list(df_result.columns[6:11])
+            cols_2 = [df_result.columns[0]] + list(df_result.columns[7:11])
             table_2 = df_result.loc[mask_2, cols_2]
 
             
