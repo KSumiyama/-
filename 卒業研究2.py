@@ -351,7 +351,6 @@ if uploaded_file is not None:
                 except:
                     return False
 
-            second_row = df_result.iloc[[0]]
 
 
             if len(df_result) > 26:
@@ -370,9 +369,10 @@ if uploaded_file is not None:
             
             #row_28 = df_result.iloc[[27], cols_1]
 
-            table_1_with_second = pd.concat([second_row[cols_1], table_1, row_27[cols_1]], ignore_index=True)
+            table_1_with_second = pd.concat([table_1, row_27[cols_1]], ignore_index=True)
 
-            table_2_with_second = pd.concat([second_row[cols_2], table_2], ignore_index=True)
+            
+            table_2_with_second = pd.concat([table_2], ignore_index=True)
 
             table_1_with_second_clean = table_1_with_second.dropna(subset=[table_1_with_second.columns[1]])
 
@@ -422,7 +422,7 @@ if uploaded_file is not None:
                 except:
                     return False
 
-            #second_row = df_result.iloc[[0]]
+            
 
 
             if len(df_result) > 26:
@@ -441,10 +441,10 @@ if uploaded_file is not None:
             
             #row_28 = df_result.iloc[[27], cols_1]
 
-            #table_1_with_second = pd.concat([second_row[cols_1], table_1, row_27[cols_1]], ignore_index=True)
+           
             table_1_with_second = pd.concat([table_1, row_27[cols_1]], ignore_index=True)
 
-            #table_2_with_second = pd.concat([second_row[cols_2], table_2], ignore_index=True)
+            
             table_2_with_second = pd.concat([table_2], ignore_index=True)
             
             table_1_with_second_clean = table_1_with_second.dropna(subset=[table_1_with_second.columns[1]])
@@ -550,7 +550,6 @@ if uploaded_file is not None:
                 except:
                     return False
 
-            second_row = df_result.iloc[[0]]
 
 
             if len(df_result) > 26:
@@ -569,9 +568,10 @@ if uploaded_file is not None:
             
             #row_28 = df_result.iloc[[27], cols_1]
 
-            table_1_with_second = pd.concat([second_row[cols_1], table_1, row_27[cols_1]], ignore_index=True)
+            table_1_with_second = pd.concat([table_1, row_27[cols_1]], ignore_index=True)
 
-            table_2_with_second = pd.concat([second_row[cols_2], table_2], ignore_index=True)
+            
+            table_2_with_second = pd.concat([table_2], ignore_index=True)
 
             table_1_with_second_clean = table_1_with_second.dropna(subset=[table_1_with_second.columns[1]])
 
@@ -621,7 +621,7 @@ if uploaded_file is not None:
                 except:
                     return False
 
-            second_row = df_result.iloc[[0]]
+            
 
 
             if len(df_result) > 26:
@@ -640,9 +640,10 @@ if uploaded_file is not None:
             
             #row_28 = df_result.iloc[[27], cols_1]
 
-            table_1_with_second = pd.concat([second_row[cols_1], table_1, row_27[cols_1]], ignore_index=True)
+            table_1_with_second = pd.concat([table_1, row_27[cols_1]], ignore_index=True)
 
-            table_2_with_second = pd.concat([second_row[cols_2], table_2], ignore_index=True)
+            
+            table_2_with_second = pd.concat([table_2], ignore_index=True)
 
             table_1_with_second_clean = table_1_with_second.dropna(subset=[table_1_with_second.columns[1]])
 
