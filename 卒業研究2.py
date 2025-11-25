@@ -341,6 +341,7 @@ if uploaded_file is not None:
 
             #df_result = df_result.drop(index=0).reset_index(drop=True)
             df_result = df_result.drop(columns=df_result.columns[0])
+            df_result.columns = df_result.columns.str.replace(r'\.\d+$', '', regex=True)
             st.subheader("最適化結果（チーム分け結果）")
 
             def is_number(x):
@@ -412,6 +413,7 @@ if uploaded_file is not None:
 
             #df_result = df_result.drop(index=0).reset_index(drop=True)
             df_result = df_result.drop(columns=df_result.columns[0])
+            df_result.columns = df_result.columns.str.replace(r'\.\d+$', '', regex=True)
             st.subheader("最適化結果（チーム分け結果）")
             def is_number(x):
                 try:
@@ -537,6 +539,7 @@ if uploaded_file is not None:
 
             #df_result = df_result.drop(index=0).reset_index(drop=True)
             df_result = df_result.drop(columns=df_result.columns[0])
+            df_result.columns = df_result.columns.str.replace(r'\.\d+$', '', regex=True)
             st.subheader("最適化結果（チーム分け結果）")
             def is_number(x):
                 try:
@@ -607,6 +610,7 @@ if uploaded_file is not None:
 
             #df_result = df_result.drop(index=0).reset_index(drop=True)
             df_result = df_result.drop(columns=df_result.columns[0])
+            df_result.columns = df_result.columns.str.replace(r'\.\d+$', '', regex=True)
             st.subheader("最適化結果（チーム分け結果）")
             def is_number(x):
                 try:
