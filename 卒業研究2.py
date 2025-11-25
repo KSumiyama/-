@@ -317,6 +317,9 @@ if uploaded_file is not None:
           if sheet.cell(row=2+i, column=15+n_count).value is None:
             sheet.cell(row=2+i, column=15+n_count).value = 0
 
+
+        sheet["C29"] = "=SUM(C3:C28)"
+
         save_filename = f"紅白戦{n_count}.xlsx"
         #wb.calculation_properties.fullCalcOnLoad = True
         book.save(save_filename)
@@ -515,6 +518,8 @@ if uploaded_file is not None:
         for i in range(1,reg+1):
           if sheet.cell(row=2+i, column=15+n_count).value is None:
             sheet.cell(row=2+i, column=15+n_count).value = 0
+
+        sheet["C29"] = "=SUM(C3:C28)"
         
         save_filename = f"紅白戦02.xlsx"
         #wb.calculation_properties.fullCalcOnLoad = True
