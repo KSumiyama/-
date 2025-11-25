@@ -31,7 +31,7 @@ if uploaded_file is not None:
   #ここから「book」変数として扱う
   book=wb
 
-  name = '選手データ＆チーム分け結果１'
+  name = '選手データ＆チーム分け結果２'
   try:
     df = pd.read_excel(BytesIO(file_bytes), sheet_name=name, header=None)
     #先頭行、先頭列削除
