@@ -86,17 +86,17 @@ if uploaded_file is not None:
 
   if st.button("チーム分けを実行"):
     with st.spinner("最適化中...少々お待ちください（最長1分ほど）"):
-      main_file = '紅白戦02.xlsx'
+      main_file = '紅白戦結果.xlsx'
       sub_file = '紅白戦.xlsx'
       #name = '選手データ＆チーム分け結果１'
 
       yomikomi=0
   #2回目以降のファイル読み込み
-      if uploaded_file.name == "紅白戦02.xlsx":
+      if uploaded_file.name == "紅白戦結果.xlsx":
         #book = load_workbook(main_file)
         #st.write("2回目以降の紅白戦")
         yomikomi = 2
-        #PP = openpyxl.load_workbook('紅白戦02.xlsx', data_only = True)
+        #PP = openpyxl.load_workbook('紅白戦結果.xlsx', data_only = True)
         P_SUM = book[name]
         I_num = P_SUM.max_row - 3
   #1回目のファイル読み込み
@@ -320,7 +320,7 @@ if uploaded_file is not None:
 
         sheet["C29"] = "=SUM(C3:C28)"
 
-        save_filename = f"紅白戦{n_count}.xlsx"
+        save_filename = f"紅白戦結果.xlsx"
         #wb.calculation_properties.fullCalcOnLoad = True
         book.save(save_filename)
 
@@ -391,7 +391,7 @@ if uploaded_file is not None:
             st.dataframe(table_2_with_second_clean, use_container_width=True)
 
 
-            file_name = "紅白戦02.xlsx"
+            file_name = "紅白戦結果.xlsx"
 
             st.download_button(
                 label="結果ファイルをダウンロード",
@@ -468,7 +468,7 @@ if uploaded_file is not None:
 
 
 
-            file_name = "紅白戦02.xlsx"
+            file_name = "紅白戦結果.xlsx"
 
             st.download_button(
                 label="結果ファイルをダウンロード",
@@ -527,7 +527,7 @@ if uploaded_file is not None:
 
         sheet["C29"] = "=SUM(C3:C28)"
         
-        save_filename = f"紅白戦02.xlsx"
+        save_filename = f"紅白戦結果.xlsx"
         #wb.calculation_properties.fullCalcOnLoad = True
         book.save(save_filename)
 
@@ -598,7 +598,7 @@ if uploaded_file is not None:
             st.dataframe(table_2_with_second_clean, use_container_width=True)
 
 
-            file_name = "紅白戦02.xlsx"
+            file_name = "紅白戦結果.xlsx"
 
             st.download_button(
                 label="結果ファイルをダウンロード",
@@ -673,7 +673,7 @@ if uploaded_file is not None:
             st.dataframe(table_2_with_second_clean, use_container_width=True)
 
 
-            file_name = "紅白戦02.xlsx"
+            file_name = "紅白戦結果.xlsx"
 
             st.download_button(
                 label="結果ファイルをダウンロード",
