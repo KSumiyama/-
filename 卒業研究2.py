@@ -85,7 +85,7 @@ if uploaded_file is not None:
     st.stop()
 
   if st.button("チーム分けを実行"):
-    with st.spinner("最適化中...少々お待ちください"):
+    with st.spinner("最適化中...少々お待ちください（最長1分ほど）"):
       main_file = '紅白戦02.xlsx'
       sub_file = '紅白戦.xlsx'
       #name = '選手データ＆チーム分け結果１'
