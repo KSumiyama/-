@@ -33,7 +33,7 @@ if uploaded_file is not None:
 
   name = '選手データ＆チーム分け結果１'
   try:
-    df = pd.read_excel(BytesIO(file_bytes), sheet_name=name, header=None)
+    df = pd.read_excel(BytesIO(file_bytes), sheet_name=name, header=1)
     #先頭行、先頭列削除
     df = df.drop(0).reset_index(drop=True)
     df = df.drop(columns=df.columns[0])
@@ -328,7 +328,7 @@ if uploaded_file is not None:
             output_stream.seek(0)
 
             try:
-                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細', header=None)
+                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細', header=1)
             except Exception as e:
                 st.error(f"結果読み込み中にエラーが発生しました：{e}")
                 st.download_button(
@@ -399,7 +399,7 @@ if uploaded_file is not None:
             output_stream.seek(0)
 
             try:
-                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細', header=None)
+                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細', header=1)
             except Exception as e:
                 st.error(f"結果読み込み中にエラーが発生しました：{e}")
                 st.download_button(
@@ -523,7 +523,7 @@ if uploaded_file is not None:
             output_stream.seek(0)
 
             try:
-                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細', header=None)
+                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細', header=1)
             except Exception as e:
                 st.error(f"結果読み込み中にエラーが発生しました：{e}")
                 st.download_button(
@@ -594,7 +594,7 @@ if uploaded_file is not None:
             output_stream.seek(0)
 
             try:
-                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細', header=None)
+                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細', header=1)
             except Exception as e:
                 st.error(f"結果読み込み中にエラーが発生しました：{e}")
                 st.download_button(
