@@ -392,9 +392,9 @@ if uploaded_file is not None:
             df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
 
             st.write("ポジション：その選手が守る守備位置（ピッチャー～ライト）")
-            st.write("守備力：ポジションでの守備の能力を数値化")
-            st.write("打撃力：打撃の能力を数値化")
-            st.write("総合力：守備力と打撃力の合計")
+            st.write("守備力：その選手のポジションでの守備の能力を数値化")
+            st.write("打撃力：その選手の打撃の能力を数値化")
+            st.write("総合力：その選手の守備力と打撃力の合計")
 
             st.subheader("チーム１に属する選手")
             st.write(f"チーム1　人数:{t1}、守備力合計:{p1}、打撃力合計:{b1}、総合力合計:{p1+b1}")
@@ -474,9 +474,9 @@ if uploaded_file is not None:
             df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
 
             st.write("ポジション：その選手が守る守備位置（ピッチャー～ライト）")
-            st.write("守備力：ポジションでの守備の能力を数値化")
-            st.write("打撃力：打撃の能力を数値化")
-            st.write("総合力：守備力と打撃力の合計")
+            st.write("守備力：その選手のポジションでの守備の能力を数値化")
+            st.write("打撃力：その選手の打撃の能力を数値化")
+            st.write("総合力：その選手の守備力と打撃力の合計")
             
             st.subheader("チーム１に属する選手")
             st.write(f"チーム1　人数:{t1}、守備力合計:{p1}、打撃力合計:{b1}、総合力合計:{p1+b1}")
@@ -613,9 +613,9 @@ if uploaded_file is not None:
             df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
 
             st.write("ポジション：その選手が守る守備位置（ピッチャー～ライト）")
-            st.write("守備力：ポジションでの守備の能力を数値化")
-            st.write("打撃力：打撃の能力を数値化")
-            st.write("総合力：守備力と打撃力の合計")
+            st.write("守備力：その選手のポジションでの守備の能力を数値化")
+            st.write("打撃力：その選手の打撃の能力を数値化")
+            st.write("総合力：その選手の守備力と打撃力の合計")
 
             st.subheader("チーム１に属する選手")
             st.write(f"チーム1　人数:{t1}、守備力合計:{p1}、打撃力合計:{b1}、総合力合計:{p1+b1}")
@@ -692,9 +692,9 @@ if uploaded_file is not None:
             df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
 
             st.write("ポジション：その選手が守る守備位置（ピッチャー～ライト）")
-            st.write("守備力：ポジションでの守備の能力を数値化")
-            st.write("打撃力：打撃の能力を数値化")
-            st.write("総合力：守備力と打撃力の合計")
+            st.write("守備力：その選手のポジションでの守備の能力を数値化")
+            st.write("打撃力：その選手の打撃の能力を数値化")
+            st.write("総合力：その選手の守備力と打撃力の合計")
             
             st.subheader("チーム１に属する選手")
             st.write(f"チーム1　人数:{t1}、守備力合計:{p1}、打撃力合計:{b1}、総合力合計:{p1+b1}")
