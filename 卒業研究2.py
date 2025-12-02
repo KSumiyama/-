@@ -282,7 +282,7 @@ if uploaded_file is not None:
       b2=0
       if pulp.LpStatus[status] == 'Optimal':
         st.write("結果をExcelに書き込みます...")
-        st.wtite("--------------------")
+        st.write("--------------------")
         for i in range(1,reg+1):
           for j in J:
             for t in T:
@@ -505,7 +505,7 @@ if uploaded_file is not None:
 
       elif elapsed_time >= 60:
         st.write("結果をExcelに書き込みます...")
-        st.wtite("--------------------")
+        st.write("--------------------")
         for i in range(1,reg+1):
           for j in J:
             for t in T:
