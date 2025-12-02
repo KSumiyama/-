@@ -65,6 +65,9 @@ if uploaded_file is not None:
 
       
     st.subheader("アップロードされたデータ")
+    st.write("出欠：出場…１、欠場…０")
+    st.write("守指定（守らせたいポジション）：１～９…ピッチャー～ライト")
+    st.write("打撃力、投～右（ピッチャー～ライト）：その選手の打撃力、守備ポジションの技量を数値化")
 
     df = df.dropna(subset=[df.columns[1]])
       
