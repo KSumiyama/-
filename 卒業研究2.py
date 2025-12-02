@@ -460,6 +460,7 @@ if uploaded_file is not None:
             table_1_with_second_clean = table_1_with_second.dropna(subset=[table_1_with_second.columns[1]])
 
             table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[1]])
+            df_display_2 = table_2_with_second_clean.drop(index=[28],errors = 'ignore')
 
 
             st.subheader("チーム１に属する選手")
@@ -468,7 +469,7 @@ if uploaded_file is not None:
 
             st.subheader("チーム２に属する選手")
             st.write(f"チーム2　人数:{t2}、守備力:{p2}、打撃力:{b2}、総合力:{p2+b2}")
-            st.dataframe(table_2_with_second_clean, use_container_width=True)
+            st.dataframe(df_display_2, use_container_width=True)
 
 
 
