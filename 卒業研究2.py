@@ -390,22 +390,17 @@ if uploaded_file is not None:
             table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[1]])
             df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
 
+            st.write("ポジション：その選手が守るポジション（ピッチャー～ライト）")
+            st.write("守備力：ポジションでの守備の技量を数値化")
+            st.write("打撃力：打撃の技量を数値化")
+            st.write("総合力：守備力と打撃力の合計")
+            st.write("--------------------")
 
             st.subheader("チーム１に属する選手")
-            st.write("ポジション（１）：その選手が守るポジション（ピッチャー～ライト）")
-            st.write("守備力（１）：ポジション（１）での守備の技量を数値化")
-            st.write("打撃力（１）：打撃の技量を数値化")
-            st.write("総合力（１）：守備力（１）と打撃力（１）の合計")
-            st.write("--------------------")
             st.write(f"チーム1　人数:{t1}、守備力:{p1}、打撃力:{b1}、総合力:{p1+b1}")
             st.dataframe(table_1_with_second_clean, use_container_width=True)
 
             st.subheader("チーム２に属する選手")
-            st.write("ポジション（２）：その選手が守るポジション（ピッチャー～ライト）")
-            st.write("守備力（２）：ポジション（２）での守備の技量を数値化")
-            st.write("打撃力（２）：打撃の技量を数値化")
-            st.write("総合力（２）：守備力（２）と打撃力（２）の合計")
-            st.write("--------------------")
             st.write(f"チーム2　人数:{t2}、守備力:{p2}、打撃力:{b2}、総合力:{p2+b2}")
             st.dataframe(df_display_2, use_container_width=True)
 
@@ -478,22 +473,17 @@ if uploaded_file is not None:
             table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[1]])
             df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
 
-
-            st.subheader("チーム１に属する選手")
-            st.write("ポジション（１）：その選手が守るポジション（ピッチャー～ライト）")
-            st.write("守備力（１）：ポジション（１）での守備の技量を数値化")
-            st.write("打撃力（１）：打撃の技量を数値化")
-            st.write("総合力（１）：守備力（１）と打撃力（１）の合計")
+            st.write("ポジション：その選手が守るポジション（ピッチャー～ライト）")
+            st.write("守備力：ポジションでの守備の技量を数値化")
+            st.write("打撃力：打撃の技量を数値化")
+            st.write("総合力：守備力と打撃力の合計")
             st.write("--------------------")
+            
+            st.subheader("チーム１に属する選手")
             st.write(f"チーム1　人数:{t1}、守備力:{p1}、打撃力:{b1}、総合力:{p1+b1}")
             st.dataframe(table_1_with_second_clean, use_container_width=True)
 
             st.subheader("チーム２に属する選手")
-            st.write("ポジション（２）：その選手が守るポジション（ピッチャー～ライト）")
-            st.write("守備力（２）：ポジション（２）での守備の技量を数値化")
-            st.write("打撃力（２）：打撃の技量を数値化")
-            st.write("総合力（２）：守備力（２）と打撃力（２）の合計")
-            st.write("--------------------")
             st.write(f"チーム2　人数:{t2}、守備力:{p2}、打撃力:{b2}、総合力:{p2+b2}")
             st.dataframe(df_display_2, use_container_width=True)
 
@@ -622,22 +612,17 @@ if uploaded_file is not None:
             table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[1]])
             df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
 
+            st.write("ポジション：その選手が守るポジション（ピッチャー～ライト）")
+            st.write("守備力：ポジションでの守備の技量を数値化")
+            st.write("打撃力：打撃の技量を数値化")
+            st.write("総合力：守備力と打撃力の合計")
+            st.write("--------------------")
 
             st.subheader("チーム１に属する選手")
-            st.write("ポジション（１）：その選手が守るポジション（ピッチャー～ライト）")
-            st.write("守備力（１）：ポジション（１）での守備の技量を数値化")
-            st.write("打撃力（１）：打撃の技量を数値化")
-            st.write("総合力（１）：守備力（１）と打撃力（１）の合計")
-            st.write("--------------------")
             st.write(f"チーム1　人数:{t1}、守備力:{p1}、打撃力:{b1}、総合力:{p1+b1}")
             st.dataframe(table_1_with_second_clean, use_container_width=True)
 
             st.subheader("チーム２に属する選手")
-            st.write("ポジション（２）：その選手が守るポジション（ピッチャー～ライト）")
-            st.write("守備力（２）：ポジション（２）での守備の技量を数値化")
-            st.write("打撃力（２）：打撃の技量を数値化")
-            st.write("総合力（２）：守備力（２）と打撃力（２）の合計")
-            st.write("--------------------")
             st.write(f"チーム2　人数:{t2}、守備力:{p2}、打撃力:{b2}、総合力:{p2+b2}")
             st.dataframe(df_display_2, use_container_width=True)
 
@@ -707,22 +692,17 @@ if uploaded_file is not None:
             table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[1]])
             df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
 
-
-            st.subheader("チーム１に属する選手")
-            st.write("ポジション（１）：その選手が守るポジション（ピッチャー～ライト）")
-            st.write("守備力（１）：ポジション（１）での守備の技量を数値化")
-            st.write("打撃力（１）：打撃の技量を数値化")
-            st.write("総合力（１）：守備力（１）と打撃力（１）の合計")
+            st.write("ポジション：その選手が守るポジション（ピッチャー～ライト）")
+            st.write("守備力：ポジションでの守備の技量を数値化")
+            st.write("打撃力：打撃の技量を数値化")
+            st.write("総合力：守備力と打撃力の合計")
             st.write("--------------------")
+            
+            st.subheader("チーム１に属する選手")
             st.write(f"チーム1　人数:{t1}、守備力:{p1}、打撃力:{b1}、総合力:{p1+b1}")
             st.dataframe(table_1_with_second_clean, use_container_width=True)
 
             st.subheader("チーム２に属する選手")
-            st.write("ポジション（２）：その選手が守るポジション（ピッチャー～ライト）")
-            st.write("守備力（２）：ポジション（２）での守備の技量を数値化")
-            st.write("打撃力（２）：打撃の技量を数値化")
-            st.write("総合力（２）：守備力（２）と打撃力（２）の合計")
-            st.write("--------------------")
             st.write(f"チーム2　人数:{t2}、守備力:{p2}、打撃力:{b2}、総合力:{p2+b2}")
             st.dataframe(df_display_2, use_container_width=True)
 
