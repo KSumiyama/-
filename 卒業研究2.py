@@ -66,8 +66,9 @@ if uploaded_file is not None:
       
     st.subheader("アップロードされたデータ")
     st.write("出欠：出場…１、欠場…０")
+    st.write("打撃力：その選手の打撃力の能力を数値化")
     st.write("守指定（その選手に守らせたいポジション）：１～９（ピッチャー～ライトの守備番号）")
-    st.write("打撃力、投～右（ピッチャー～ライト）：その選手の打撃力、守備ポジションの技量を数値化")
+    st.write("投～右（ピッチャー～ライト）：それぞれの守備位置での能力を数値化")
 
     df = df.dropna(subset=[df.columns[1]])
       
@@ -80,7 +81,7 @@ if uploaded_file is not None:
     df_combined = df_combined.dropna(subset=[df_combined.columns[1]])
 
     st.subheader("過去紅白戦のチーム分け結果")
-    st.write("０：所属なし、１：チーム１、２：チーム２")
+    st.write("0：所属なし、1：チーム１、2：チーム２")
     
     st.dataframe(df_combined.head(27), use_container_width=True)
     
