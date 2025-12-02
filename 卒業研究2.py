@@ -286,6 +286,7 @@ if uploaded_file is not None:
                 sheet.cell(row=2,column=15+n_count).value = f"{n_count+1}回目"
                 sheet = book['チーム分け結果詳細']
                 sheet.cell(row=2+i,column=2+(5*t-4)).value = 1
+                  
                 if t==1:
                     t1 += 1
                 elif t==2:
@@ -311,7 +312,9 @@ if uploaded_file is not None:
         sheet.cell(row=29,column=10).value = p2
         sheet.cell(row=29,column=11).value = b2
         sheet.cell(row=29,column=12).value = p2+b2
-          
+
+        sheet.row_dimensions[29].hidden = True
+        
         sheet = book[name]
         for i in range(1,reg+1):
           if sheet.cell(row=2+i, column=15+n_count).value is None:
@@ -419,9 +422,7 @@ if uploaded_file is not None:
 
             #df_result = df_result.drop(index=0).reset_index(drop=True)
             df_result = df_result.drop(columns=df_result.columns[0])
-            #
-            df_result = df_result.drop(columns=df_result.columns[26])
-            #
+            
             
             st.subheader("最適化結果（チーム分け結果）")
             def is_number(x):
@@ -522,6 +523,8 @@ if uploaded_file is not None:
         sheet.cell(row=29,column=10).value = p2
         sheet.cell(row=29,column=11).value = b2
         sheet.cell(row=29,column=12).value = p2+b2
+
+        sheet.row_dimensions[29].hidden = True
 
         sheet = book[name]
         for i in range(1,reg+1):
