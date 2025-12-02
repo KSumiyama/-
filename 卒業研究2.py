@@ -394,7 +394,6 @@ if uploaded_file is not None:
             st.write("守備力：ポジションでの守備の技量を数値化")
             st.write("打撃力：打撃の技量を数値化")
             st.write("総合力：守備力と打撃力の合計")
-            st.write("--------------------")
 
             st.subheader("チーム１に属する選手")
             st.write(f"チーム1　人数:{t1}、守備力:{p1}、打撃力:{b1}、総合力:{p1+b1}")
@@ -477,7 +476,6 @@ if uploaded_file is not None:
             st.write("守備力：ポジションでの守備の技量を数値化")
             st.write("打撃力：打撃の技量を数値化")
             st.write("総合力：守備力と打撃力の合計")
-            st.write("--------------------")
             
             st.subheader("チーム１に属する選手")
             st.write(f"チーム1　人数:{t1}、守備力:{p1}、打撃力:{b1}、総合力:{p1+b1}")
@@ -616,7 +614,6 @@ if uploaded_file is not None:
             st.write("守備力：ポジションでの守備の技量を数値化")
             st.write("打撃力：打撃の技量を数値化")
             st.write("総合力：守備力と打撃力の合計")
-            st.write("--------------------")
 
             st.subheader("チーム１に属する選手")
             st.write(f"チーム1　人数:{t1}、守備力:{p1}、打撃力:{b1}、総合力:{p1+b1}")
@@ -696,7 +693,6 @@ if uploaded_file is not None:
             st.write("守備力：ポジションでの守備の技量を数値化")
             st.write("打撃力：打撃の技量を数値化")
             st.write("総合力：守備力と打撃力の合計")
-            st.write("--------------------")
             
             st.subheader("チーム１に属する選手")
             st.write(f"チーム1　人数:{t1}、守備力:{p1}、打撃力:{b1}、総合力:{p1+b1}")
