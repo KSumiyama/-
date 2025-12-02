@@ -460,7 +460,7 @@ if uploaded_file is not None:
             table_1_with_second_clean = table_1_with_second.dropna(subset=[table_1_with_second.columns[1]])
 
             table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[1]])
-            df_display_2 = table_2_with_second_clean.drop(index=[28],errors = 'ignore')
+            df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
 
 
             st.subheader("チーム１に属する選手")
