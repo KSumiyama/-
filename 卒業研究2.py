@@ -313,7 +313,7 @@ if uploaded_file is not None:
         sheet.cell(row=29,column=11).value = b2
         sheet.cell(row=29,column=12).value = p2+b2
 
-        sheet.row_dimensions[29].hidden = True
+        #sheet.row_dimensions[29].hidden = True
         
         sheet = book[name]
         for i in range(1,reg+1):
@@ -422,7 +422,7 @@ if uploaded_file is not None:
 
             #df_result = df_result.drop(index=0).reset_index(drop=True)
             df_result = df_result.drop(columns=df_result.columns[0])
-            
+            df_result = df_result.drop(columns
             
             st.subheader("最適化結果（チーム分け結果）")
             def is_number(x):
@@ -452,7 +452,7 @@ if uploaded_file is not None:
             #row_28 = df_result.iloc[[27], cols_1]
 
            
-            table_1_with_second = pd.concat([table_1, row_27[cols_1]], ignore_index=True)
+            table_1_with_second = pd.concat([table_1], ignore_index=True)
 
             
             table_2_with_second = pd.concat([table_2], ignore_index=True)
@@ -524,7 +524,7 @@ if uploaded_file is not None:
         sheet.cell(row=29,column=11).value = b2
         sheet.cell(row=29,column=12).value = p2+b2
 
-        sheet.row_dimensions[29].hidden = True
+        #sheet.row_dimensions[29].hidden = True
 
         sheet = book[name]
         for i in range(1,reg+1):
