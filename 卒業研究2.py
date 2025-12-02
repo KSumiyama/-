@@ -392,8 +392,8 @@ if uploaded_file is not None:
             df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
 
             st.write("ポジション：その選手が守る守備位置（ピッチャー～ライト）")
-            st.write("守備力：ポジションでの守備の技量を数値化")
-            st.write("打撃力：打撃の技量を数値化")
+            st.write("守備力：ポジションでの守備の能力を数値化")
+            st.write("打撃力：打撃の能力を数値化")
             st.write("総合力：守備力と打撃力の合計")
 
             st.subheader("チーム１に属する選手")
@@ -474,8 +474,8 @@ if uploaded_file is not None:
             df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
 
             st.write("ポジション：その選手が守る守備位置（ピッチャー～ライト）")
-            st.write("守備力：ポジションでの守備の技量を数値化")
-            st.write("打撃力：打撃の技量を数値化")
+            st.write("守備力：ポジションでの守備の能力を数値化")
+            st.write("打撃力：打撃の能力を数値化")
             st.write("総合力：守備力と打撃力の合計")
             
             st.subheader("チーム１に属する選手")
@@ -613,8 +613,8 @@ if uploaded_file is not None:
             df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
 
             st.write("ポジション：その選手が守る守備位置（ピッチャー～ライト）")
-            st.write("守備力：ポジションでの守備の技量を数値化")
-            st.write("打撃力：打撃の技量を数値化")
+            st.write("守備力：ポジションでの守備の能力を数値化")
+            st.write("打撃力：打撃の能力を数値化")
             st.write("総合力：守備力と打撃力の合計")
 
             st.subheader("チーム１に属する選手")
@@ -692,8 +692,8 @@ if uploaded_file is not None:
             df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
 
             st.write("ポジション：その選手が守る守備位置（ピッチャー～ライト）")
-            st.write("守備力：ポジションでの守備の技量を数値化")
-            st.write("打撃力：打撃の技量を数値化")
+            st.write("守備力：ポジションでの守備の能力を数値化")
+            st.write("打撃力：打撃の能力を数値化")
             st.write("総合力：守備力と打撃力の合計")
             
             st.subheader("チーム１に属する選手")
