@@ -81,7 +81,7 @@ if uploaded_file is not None:
     df_combined = df_combined.dropna(subset=[df_combined.columns[1]])
 
     st.subheader("過去紅白戦のチーム分け結果")
-    st.write("0：所属なし、1：チーム１、2：チーム２")
+    st.write("0：所属なし、1：チーム１に所属、2：チーム２に所属")
     
     st.dataframe(df_combined.head(27), use_container_width=True)
     
