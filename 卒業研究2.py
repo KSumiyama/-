@@ -392,7 +392,7 @@ if uploaded_file is not None:
             table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[1]])
             df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
 
-            st.write("ポジション：その選手が守る守備位置（ピッチャー～ライト）")
+            st.write("ポジション：その選手が守る守備位置の守備番号（ピッチャー～ライト）")
             st.write("守備力：その選手のポジションでの守備の能力を数値化")
             st.write("打撃力：その選手の打撃の能力を数値化")
             st.write("総合力：その選手の守備力と打撃力の合計")
@@ -474,7 +474,7 @@ if uploaded_file is not None:
             table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[1]])
             df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
 
-            st.write("ポジション：その選手が守る守備位置（ピッチャー～ライト）")
+            st.write("ポジション：その選手が守る守備位置の守備番号（ピッチャー～ライト）")
             st.write("守備力：その選手のポジションでの守備の能力を数値化")
             st.write("打撃力：その選手の打撃の能力を数値化")
             st.write("総合力：その選手の守備力と打撃力の合計")
@@ -613,7 +613,7 @@ if uploaded_file is not None:
             table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[1]])
             df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
 
-            st.write("ポジション：その選手が守る守備位置（ピッチャー～ライト）")
+            st.write("ポジション：その選手が守る守備位置の守備番号（ピッチャー～ライト）")
             st.write("守備力：その選手のポジションでの守備の能力を数値化")
             st.write("打撃力：その選手の打撃の能力を数値化")
             st.write("総合力：その選手の守備力と打撃力の合計")
@@ -692,7 +692,7 @@ if uploaded_file is not None:
             table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[1]])
             df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
 
-            st.write("ポジション：その選手が守る守備位置（ピッチャー～ライト）")
+            st.write("ポジション：その選手が守る守備位置の守備番号（ピッチャー～ライト）")
             st.write("守備力：その選手のポジションでの守備の能力を数値化")
             st.write("打撃力：その選手の打撃の能力を数値化")
             st.write("総合力：その選手の守備力と打撃力の合計")
