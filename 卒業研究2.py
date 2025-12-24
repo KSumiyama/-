@@ -269,6 +269,8 @@ if uploaded_file is not None:
       elapsed_time = end_time - start_time
       st.write(f"最適化実行時間: {elapsed_time:.3f}秒")
       st.write(f"ステータス: {pulp.LpStatus[status]}")
+      st.write(f"EE:{EE}")
+      st.write(f"reg:{reg}")
 
 
 
