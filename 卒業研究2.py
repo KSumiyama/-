@@ -242,7 +242,7 @@ if uploaded_file is not None:
         for ii in range(i+1,reg+1):
           for t in T:
             if (i,ii) in Y:
-              problem += Y[(i,ii)] >= lpSum(x[(i,j,t)] for j in J if (i,j,t) in x) + lpSum(x[(ii,j,t)] for j in J if (ii,j,t) in x) - 1, f"constraint_prior_same_team_{i}_{ii}_{t}"
+              problem += Y[(i,ii)] >= lpSum(x[(i,j,t)] + x[(ii,j,t)] for j in J if (ii,j,t) in x) - 1, f"constraint_prior_same_team_{i}_{ii}_{t}"
 
       #絶対値
       z = LpVariable('z', lowBound=0, cat=LpContinuous)
