@@ -262,7 +262,8 @@ if uploaded_file is not None:
       st.write(f"{n_count+1}回目の紅白戦")
       st.write("最適化開始")
       start_time = time.time()
-      status = problem.solve(PULP_CBC_CMD(timeLimit=60, msg=True))
+      #status = problem.solve(PULP_CBC_CMD(timeLimit=60, msg=True))
+      status = problem.solve()
       end_time = time.time()
 #pulp.LpStatus[status]
       st.write("最適化終了")
@@ -504,215 +505,215 @@ if uploaded_file is not None:
 
         
 
-      elif elapsed_time >= 60:
-        st.write("結果をExcelに書き込みます...")
-        st.write("--------------------")
-        for i in range(1,reg+1):
-          for j in J:
-            for t in T:
-              if (i,j,t) in x and x[(i,j,t)].varValue >= 0.99:
-                sheet = book[name]
-                sheet.cell(row=2+i,column=15+n_count).value = t
-                sheet.cell(row=2, column=15+n_count).value = n_count+1
-                sheet = book['チーム分け結果詳細']
-                sheet.cell(row=2+i,column=2+(5*t-4)).value = 1
-                if t==1:
-                    t1 += 1
-                elif t==2:
-                    t2 += 1
-                sheet.cell(row=2+i,column=3+(5*t-4)).value = j
-                sheet.cell(row=2+i,column=4+(5*t-4)).value = P[(i,j)]
-                if t==1:
-                    p1 += P[(i,j)]
-                elif t==2:
-                    p2 += P[(i,j)]
-                sheet.cell(row=2+i,column=5+(5*t-4)).value = B[(i)]
-                if t==1:
-                    b1 += B[(i)]
-                elif t==2:
-                    b2 += B[(i)]
-                sheet.cell(row=2+i,column=6+(5*t-4)).value = P[(i,j)]+B[(i)]
+      # elif elapsed_time >= 60:
+      #   st.write("結果をExcelに書き込みます...")
+      #   st.write("--------------------")
+      #   for i in range(1,reg+1):
+      #     for j in J:
+      #       for t in T:
+      #         if (i,j,t) in x and x[(i,j,t)].varValue >= 0.99:
+      #           sheet = book[name]
+      #           sheet.cell(row=2+i,column=15+n_count).value = t
+      #           sheet.cell(row=2, column=15+n_count).value = n_count+1
+      #           sheet = book['チーム分け結果詳細']
+      #           sheet.cell(row=2+i,column=2+(5*t-4)).value = 1
+      #           if t==1:
+      #               t1 += 1
+      #           elif t==2:
+      #               t2 += 1
+      #           sheet.cell(row=2+i,column=3+(5*t-4)).value = j
+      #           sheet.cell(row=2+i,column=4+(5*t-4)).value = P[(i,j)]
+      #           if t==1:
+      #               p1 += P[(i,j)]
+      #           elif t==2:
+      #               p2 += P[(i,j)]
+      #           sheet.cell(row=2+i,column=5+(5*t-4)).value = B[(i)]
+      #           if t==1:
+      #               b1 += B[(i)]
+      #           elif t==2:
+      #               b2 += B[(i)]
+      #           sheet.cell(row=2+i,column=6+(5*t-4)).value = P[(i,j)]+B[(i)]
         
-        sheet.cell(row=29,column=3).value = t1
-        sheet.cell(row=29,column=5).value = p1
-        sheet.cell(row=29,column=6).value = b1
-        sheet.cell(row=29,column=7).value = p1+b1
-        sheet.cell(row=29,column=8).value = t2
-        sheet.cell(row=29,column=10).value = p2
-        sheet.cell(row=29,column=11).value = b2
-        sheet.cell(row=29,column=12).value = p2+b2
+      #   sheet.cell(row=29,column=3).value = t1
+      #   sheet.cell(row=29,column=5).value = p1
+      #   sheet.cell(row=29,column=6).value = b1
+      #   sheet.cell(row=29,column=7).value = p1+b1
+      #   sheet.cell(row=29,column=8).value = t2
+      #   sheet.cell(row=29,column=10).value = p2
+      #   sheet.cell(row=29,column=11).value = b2
+      #   sheet.cell(row=29,column=12).value = p2+b2
 
-        #sheet.row_dimensions[29].hidden = True
+      #   #sheet.row_dimensions[29].hidden = True
 
-        sheet = book[name]
-        for i in range(1,reg+1):
-          if sheet.cell(row=2+i, column=15+n_count).value is None:
-            sheet.cell(row=2+i, column=15+n_count).value = 0
+      #   sheet = book[name]
+      #   for i in range(1,reg+1):
+      #     if sheet.cell(row=2+i, column=15+n_count).value is None:
+      #       sheet.cell(row=2+i, column=15+n_count).value = 0
 
-        sheet["C29"] = "=SUM(C3:C28)"
+      #   sheet["C29"] = "=SUM(C3:C28)"
         
-        save_filename = f"紅白戦結果.xlsx"
-        #wb.calculation_properties.fullCalcOnLoad = True
-        book.save(save_filename)
+      #   save_filename = f"紅白戦結果.xlsx"
+      #   #wb.calculation_properties.fullCalcOnLoad = True
+      #   book.save(save_filename)
 
-        if yomikomi == 2:
-            #保存
-            output_stream = BytesIO()
-            book.save(output_stream)
-            output_stream.seek(0)
+      #   if yomikomi == 2:
+      #       #保存
+      #       output_stream = BytesIO()
+      #       book.save(output_stream)
+      #       output_stream.seek(0)
 
-            try:
-                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細', header=1)
-            except Exception as e:
-                st.error(f"結果読み込み中にエラーが発生しました：{e}")
-                st.download_button(
-                    label="結果ファイルをダウンロード",
-                    data=output_stream.getvalue(),
-                    file_name=f"{uploaded_file.name}",
-                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                )
-                st.stop()
+      #       try:
+      #           df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細', header=1)
+      #       except Exception as e:
+      #           st.error(f"結果読み込み中にエラーが発生しました：{e}")
+      #           st.download_button(
+      #               label="結果ファイルをダウンロード",
+      #               data=output_stream.getvalue(),
+      #               file_name=f"{uploaded_file.name}",
+      #               mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      #           )
+      #           st.stop()
 
 
-            #df_result = df_result.drop(index=0).reset_index(drop=True)
-            df_result = df_result.drop(columns=df_result.columns[0])
+      #       #df_result = df_result.drop(index=0).reset_index(drop=True)
+      #       df_result = df_result.drop(columns=df_result.columns[0])
             
-            st.subheader("チーム分け結果")
-            def is_number(x):
-                try:
-                    float(x)
-                    return True
-                except:
-                    return False
+      #       st.subheader("チーム分け結果")
+      #       def is_number(x):
+      #           try:
+      #               float(x)
+      #               return True
+      #           except:
+      #               return False
 
 
 
-            if len(df_result) > 26:
-                row_27 = df_result.iloc[[26]]
-            else:
-                row_27 = pd.DataFrame(columns=df_result.columns)
+      #       if len(df_result) > 26:
+      #           row_27 = df_result.iloc[[26]]
+      #       else:
+      #           row_27 = pd.DataFrame(columns=df_result.columns)
                 
-            mask_1 = df_result.iloc[:, 2].apply(is_number)
-            cols_1 = [df_result.columns[0]] + list(df_result.columns[2:6])
-            table_1 = df_result.loc[mask_1, cols_1]
+      #       mask_1 = df_result.iloc[:, 2].apply(is_number)
+      #       cols_1 = [df_result.columns[0]] + list(df_result.columns[2:6])
+      #       table_1 = df_result.loc[mask_1, cols_1]
 
-            mask_2 = df_result.iloc[:, 6].apply(is_number)
-            cols_2 = [df_result.columns[0]] + list(df_result.columns[7:11])
-            table_2 = df_result.loc[mask_2, cols_2]
-
-            
-            #row_28 = df_result.iloc[[27], cols_1]
-
-            table_1_with_second = pd.concat([table_1], ignore_index=True)
+      #       mask_2 = df_result.iloc[:, 6].apply(is_number)
+      #       cols_2 = [df_result.columns[0]] + list(df_result.columns[7:11])
+      #       table_2 = df_result.loc[mask_2, cols_2]
 
             
-            table_2_with_second = pd.concat([table_2], ignore_index=True)
+      #       #row_28 = df_result.iloc[[27], cols_1]
 
-            table_1_with_second_clean = table_1_with_second.dropna(subset=[table_1_with_second.columns[1]])
-
-            table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[1]])
-            df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
-
-            st.write("ポジション：その選手が守る守備位置の守備番号（ピッチャー～ライト）")
-            st.write("守備力：その選手のポジションでの守備の能力を数値化")
-            st.write("打撃力：その選手の打撃の能力を数値化")
-            st.write("総合力：その選手の守備力と打撃力の合計")
-
-            st.subheader("チーム１に属する選手")
-            st.write(f"人数:{t1}、守備力合計:{p1}、打撃力合計:{b1}、総合力合計:{p1+b1}")
-            st.dataframe(table_1_with_second_clean, use_container_width=True)
-
-            st.subheader("チーム２に属する選手")
-            st.write(f"人数:{t2}、守備力合計:{p2}、打撃力合計:{b2}、総合力合計:{p2+b2}")
-            st.dataframe(df_display_2, use_container_width=True)
-
-            file_name = "紅白戦結果.xlsx"
-
-            st.download_button(
-                label="結果ファイルをダウンロード",
-                data=output_stream,
-                file_name=file_name,
-                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            )
-        else:
-            #保存
-            output_stream = BytesIO()
-            book.save(output_stream)
-            output_stream.seek(0)
-
-            try:
-                df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細', header=1)
-            except Exception as e:
-                st.error(f"結果読み込み中にエラーが発生しました：{e}")
-                st.download_button(
-                    label="結果ファイルをダウンロード",
-                    data=output_stream.getvalue(),
-                    file_name=f"{uploaded_file.name}",
-                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                )
-                st.stop()
-
-            #df_result = df_result.drop(index=0).reset_index(drop=True)
-            df_result = df_result.drop(columns=df_result.columns[0])
-            
-            st.subheader("チーム分け結果")
-            def is_number(x):
-                try:
-                    float(x)
-                    return True
-                except:
-                    return False
+      #       table_1_with_second = pd.concat([table_1], ignore_index=True)
 
             
+      #       table_2_with_second = pd.concat([table_2], ignore_index=True)
+
+      #       table_1_with_second_clean = table_1_with_second.dropna(subset=[table_1_with_second.columns[1]])
+
+      #       table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[1]])
+      #       df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
+
+      #       st.write("ポジション：その選手が守る守備位置の守備番号（ピッチャー～ライト）")
+      #       st.write("守備力：その選手のポジションでの守備の能力を数値化")
+      #       st.write("打撃力：その選手の打撃の能力を数値化")
+      #       st.write("総合力：その選手の守備力と打撃力の合計")
+
+      #       st.subheader("チーム１に属する選手")
+      #       st.write(f"人数:{t1}、守備力合計:{p1}、打撃力合計:{b1}、総合力合計:{p1+b1}")
+      #       st.dataframe(table_1_with_second_clean, use_container_width=True)
+
+      #       st.subheader("チーム２に属する選手")
+      #       st.write(f"人数:{t2}、守備力合計:{p2}、打撃力合計:{b2}、総合力合計:{p2+b2}")
+      #       st.dataframe(df_display_2, use_container_width=True)
+
+      #       file_name = "紅白戦結果.xlsx"
+
+      #       st.download_button(
+      #           label="結果ファイルをダウンロード",
+      #           data=output_stream,
+      #           file_name=file_name,
+      #           mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      #       )
+      #   else:
+      #       #保存
+      #       output_stream = BytesIO()
+      #       book.save(output_stream)
+      #       output_stream.seek(0)
+
+      #       try:
+      #           df_result = pd.read_excel(output_stream, sheet_name='チーム分け結果詳細', header=1)
+      #       except Exception as e:
+      #           st.error(f"結果読み込み中にエラーが発生しました：{e}")
+      #           st.download_button(
+      #               label="結果ファイルをダウンロード",
+      #               data=output_stream.getvalue(),
+      #               file_name=f"{uploaded_file.name}",
+      #               mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      #           )
+      #           st.stop()
+
+      #       #df_result = df_result.drop(index=0).reset_index(drop=True)
+      #       df_result = df_result.drop(columns=df_result.columns[0])
+            
+      #       st.subheader("チーム分け結果")
+      #       def is_number(x):
+      #           try:
+      #               float(x)
+      #               return True
+      #           except:
+      #               return False
+
+            
 
 
-            if len(df_result) > 26:
-                row_27 = df_result.iloc[[26]]
-            else:
-                row_27 = pd.DataFrame(columns=df_result.columns)
+      #       if len(df_result) > 26:
+      #           row_27 = df_result.iloc[[26]]
+      #       else:
+      #           row_27 = pd.DataFrame(columns=df_result.columns)
                 
-            mask_1 = df_result.iloc[:, 2].apply(is_number)
-            cols_1 = [df_result.columns[0]] + list(df_result.columns[2:6])
-            table_1 = df_result.loc[mask_1, cols_1]
+      #       mask_1 = df_result.iloc[:, 2].apply(is_number)
+      #       cols_1 = [df_result.columns[0]] + list(df_result.columns[2:6])
+      #       table_1 = df_result.loc[mask_1, cols_1]
 
-            mask_2 = df_result.iloc[:, 6].apply(is_number)
-            cols_2 = [df_result.columns[0]] + list(df_result.columns[7:11])
-            table_2 = df_result.loc[mask_2, cols_2]
-
-            
-            #row_28 = df_result.iloc[[27], cols_1]
-
-            table_1_with_second = pd.concat([table_1], ignore_index=True)
+      #       mask_2 = df_result.iloc[:, 6].apply(is_number)
+      #       cols_2 = [df_result.columns[0]] + list(df_result.columns[7:11])
+      #       table_2 = df_result.loc[mask_2, cols_2]
 
             
-            table_2_with_second = pd.concat([table_2], ignore_index=True)
+      #       #row_28 = df_result.iloc[[27], cols_1]
 
-            table_1_with_second_clean = table_1_with_second.dropna(subset=[table_1_with_second.columns[1]])
+      #       table_1_with_second = pd.concat([table_1], ignore_index=True)
 
-            table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[1]])
-            df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
-
-            st.write("ポジション：その選手が守る守備位置の守備番号（ピッチャー～ライト）")
-            st.write("守備力：その選手のポジションでの守備の能力を数値化")
-            st.write("打撃力：その選手の打撃の能力を数値化")
-            st.write("総合力：その選手の守備力と打撃力の合計")
             
-            st.subheader("チーム１に属する選手")
-            st.write(f"人数:{t1}、守備力合計:{p1}、打撃力合計:{b1}、総合力合計:{p1+b1}")
-            st.dataframe(table_1_with_second_clean, use_container_width=True)
+      #       table_2_with_second = pd.concat([table_2], ignore_index=True)
 
-            st.subheader("チーム２に属する選手")
-            st.write(f"人数:{t2}、守備力合計:{p2}、打撃力合計:{b2}、総合力合計:{p2+b2}")
-            st.dataframe(df_display_2, use_container_width=True)
+      #       table_1_with_second_clean = table_1_with_second.dropna(subset=[table_1_with_second.columns[1]])
 
-            file_name = "紅白戦結果.xlsx"
+      #       table_2_with_second_clean = table_2_with_second.dropna(subset=[table_2_with_second.columns[1]])
+      #       df_display_2 = table_2_with_second_clean.drop(index=[26],errors = 'ignore')
 
-            st.download_button(
-                label="結果ファイルをダウンロード",
-                data=output_stream,
-                file_name=file_name,
-                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            )
+      #       st.write("ポジション：その選手が守る守備位置の守備番号（ピッチャー～ライト）")
+      #       st.write("守備力：その選手のポジションでの守備の能力を数値化")
+      #       st.write("打撃力：その選手の打撃の能力を数値化")
+      #       st.write("総合力：その選手の守備力と打撃力の合計")
+            
+      #       st.subheader("チーム１に属する選手")
+      #       st.write(f"人数:{t1}、守備力合計:{p1}、打撃力合計:{b1}、総合力合計:{p1+b1}")
+      #       st.dataframe(table_1_with_second_clean, use_container_width=True)
+
+      #       st.subheader("チーム２に属する選手")
+      #       st.write(f"人数:{t2}、守備力合計:{p2}、打撃力合計:{b2}、総合力合計:{p2+b2}")
+      #       st.dataframe(df_display_2, use_container_width=True)
+
+      #       file_name = "紅白戦結果.xlsx"
+
+      #       st.download_button(
+      #           label="結果ファイルをダウンロード",
+      #           data=output_stream,
+      #           file_name=file_name,
+      #           mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      #       )
         
       else:
         st.error("最適解が得られませんでした。")
